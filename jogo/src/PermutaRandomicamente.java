@@ -10,7 +10,7 @@ public class PermutaRandomicamente implements Embaralhador {
 		List<String> letras = Arrays.asList(palavra.split(""));
 		Collections.shuffle(letras);
 		letras.forEach(palavraEmbaralhada::append);
-		return palavraEmbaralhada.toString();
+		return palavra.equals(palavraEmbaralhada.toString()) ? embaralha(palavra) : palavraEmbaralhada.toString();
 	}
 
 	@Override
