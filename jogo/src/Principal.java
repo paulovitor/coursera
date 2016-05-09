@@ -25,14 +25,32 @@ public class Principal {
 		System.out.println("1) Número fixo de palavras (Você irá adivinhar 10 palavras com 2 tentativas extra)");
 		System.out.println("2) Número de erros (Você irá adivinhar até errar 5 vezes com 1 tentativa extra)");
 		System.out.println("3) Morte súbita (Caso tenha um erro o jogo acaba)");
-		int escolha = Integer.valueOf(in.nextLine());
-		if (escolha >= 1 || escolha <= 3) {
-			return FabricaMecanicaDoJogo.getInstancia().getMecanicaDoJogo(escolha);
-		} else {
-			System.out.println("faz sua escolha:");
-			escolheMecanica(in);
+
+		return FabricaMecanicaDoJogo.getInstancia().getMecanicaDoJogo(getOpcao(in));
+	}
+
+	private static int getOpcao(Scanner in) {
+		int opcao;
+		try {
+			opcao = Integer.valueOf(validaValorDigitado(in));
+			if (!(opcao >= 1 && opcao <= 3)) {
+				System.out.println("informe um valor valido:");
+				return getOpcao(in);
+			}
+		} catch (NumberFormatException exception) {
+			System.out.println("informe um valor valido:");
+			return getOpcao(in);
 		}
-		return null;
+		return opcao;
+	}
+
+	private static String validaValorDigitado(Scanner in) {
+		String digitado = in.nextLine();
+		if (digitado == null || digitado.equals("")) {
+			System.out.println("informe um valor valido:");
+			return validaValorDigitado(in);
+		}
+		return digitado;
 	}
 
 	private static void mostraPalavraEmbaralhada(MecanicaDoJogo mecanica) {
@@ -41,7 +59,7 @@ public class Principal {
 	}
 
 	private static void responde(Scanner in, MecanicaDoJogo mecanica) {
-		String resposta = in.nextLine();
+		String resposta = validaValorDigitado(in);
 		if (mecanica.adivinha(resposta)) {
 			System.out.println("Você acertou!");
 		} else if (mecanica.podeTentarNovamente()) {
