@@ -1,34 +1,26 @@
 
-public class NumeroDeErros implements MecanicaDoJogo {
+public class NumeroDeErros extends MecanicaDoJogoBase {
 
 	@Override
 	public String recuperaPalavraEmbaralhada() {
-		// TODO Auto-generated method stub
-		return null;
+		embaralhador = FabricaEmbaralhadores.getInstancia().getEmbaralhador();
+		return super.recuperaPalavraEmbaralhada();
 	}
 
 	@Override
-	public boolean adivinha(String nextLine) {
-		// TODO Auto-generated method stub
-		return false;
+	protected void pontua() {
+		super.pontua();
+		pontuacao += embaralhador.getDificuldade();
 	}
 
 	@Override
 	public boolean podeTentarNovamente() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void pontuacao() {
-		// TODO Auto-generated method stub
-		
+		return erros <= 1;
 	}
 
 	@Override
 	public boolean terminou() {
-		// TODO Auto-generated method stub
-		return false;
+		return super.terminou() || erros == 5;
 	}
 
 }

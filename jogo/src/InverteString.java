@@ -11,4 +11,9 @@ public class InverteString implements Embaralhador {
 		return palavraEmbaralhada;
 	}
 
+	@Override
+	public int getDificuldade() {
+		return 1;
+	}
+
 }

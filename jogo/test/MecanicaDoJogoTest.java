@@ -1,3 +1,4 @@
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -12,11 +13,30 @@ public class MecanicaDoJogoTest {
 
 		mecanica.recuperaPalavraEmbaralhada();
 
-		for (int index = 0; index < 20; index++) {
+		for (int index = 0; index < 10; index++) {
 			mecanica.adivinha("teste");
 		}
 
 		assertTrue(mecanica.terminou());
+	}
+
+	@Test
+	public void devePermitirTentarNovamenteDuasVezes() {
+		mecanica = new NumeroFixoDePalavras();
+
+		mecanica.recuperaPalavraEmbaralhada();
+
+		mecanica.adivinha("teste");
+
+		assertTrue(mecanica.podeTentarNovamente());
+
+		mecanica.adivinha("teste");
+
+		assertTrue(mecanica.podeTentarNovamente());
+
+		mecanica.adivinha("teste");
+
+		assertFalse(mecanica.podeTentarNovamente());
 	}
 
 	@Test
@@ -33,6 +53,21 @@ public class MecanicaDoJogoTest {
 	}
 
 	@Test
+	public void devePermitirTentarNovamenteUmaVez() {
+		mecanica = new NumeroDeErros();
+
+		mecanica.recuperaPalavraEmbaralhada();
+
+		mecanica.adivinha("teste");
+
+		assertTrue(mecanica.podeTentarNovamente());
+
+		mecanica.adivinha("teste");
+
+		assertFalse(mecanica.podeTentarNovamente());
+	}
+
+	@Test
 	public void deveTerminarQuandoHouverUmErro() {
 		mecanica = new MorteSubita();
 
@@ -41,6 +76,17 @@ public class MecanicaDoJogoTest {
 		mecanica.adivinha("teste");
 
 		assertTrue(mecanica.terminou());
+	}
+
+	@Test
+	public void naoDevePermitirTentarNovamenteAposUmErro() {
+		mecanica = new MorteSubita();
+
+		mecanica.recuperaPalavraEmbaralhada();
+
+		mecanica.adivinha("teste");
+
+		assertFalse(mecanica.podeTentarNovamente());
 	}
 
 }

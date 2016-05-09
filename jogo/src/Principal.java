@@ -13,13 +13,19 @@ public class Principal {
 		termina(in, mecanica);
 	}
 
+	private static void inicia() {
+		System.out.println("#########################");
+		System.out.println("## Jogo de Adivinhação ##");
+		System.out.println("#########################");
+	}
+
 	private static MecanicaDoJogo escolheMecanica(Scanner in) {
 		System.out.println("\n");
 		System.out.println("## Escolha o estilo de jogo:");
-		System.out.println("1) Número fixo de palavras (Você irá adivinhar 10 palavras podendo tentar 3 vezes)");
-		System.out.println("2) Número de erros (Você irá adivinhar até errar 5 vezes)");
+		System.out.println("1) Número fixo de palavras (Você irá adivinhar 10 palavras com 2 tentativas extra)");
+		System.out.println("2) Número de erros (Você irá adivinhar até errar 5 vezes com 1 tentativa extra)");
 		System.out.println("3) Morte súbita (Caso tenha um erro o jogo acaba)");
-		int escolha = in.nextInt();
+		int escolha = Integer.valueOf(in.nextLine());
 		if (escolha >= 1 || escolha <= 3) {
 			return FabricaMecanicaDoJogo.getInstancia().getMecanicaDoJogo(escolha);
 		} else {
@@ -29,16 +35,9 @@ public class Principal {
 		return null;
 	}
 
-	private static void inicia() {
-		System.out.println("#########################");
-		System.out.println("## Jogo de Adivinhação ##");
-		System.out.println("#########################");
-	}
-
 	private static void mostraPalavraEmbaralhada(MecanicaDoJogo mecanica) {
-		String palavraEmbaralhada = mecanica.recuperaPalavraEmbaralhada();
 		System.out.println("\n");
-		System.out.println("## Tente adivinhar qual é a palavra: (" + palavraEmbaralhada + ")");
+		System.out.println("## Tente adivinhar qual é a palavra: (" + mecanica.recuperaPalavraEmbaralhada() + ")");
 	}
 
 	private static void responde(Scanner in, MecanicaDoJogo mecanica) {
@@ -52,7 +51,12 @@ public class Principal {
 	}
 
 	private static void termina(Scanner in, MecanicaDoJogo mecanica) {
-		mecanica.pontuacao();
+		System.out.println("\n");
+		System.out.println("## Pontuação: " + mecanica.pontuacao());
+		System.out.println("\n");
+		System.out.println("#################");
+		System.out.println("## Fim de jogo ##");
+		System.out.println("#################");
 		in.close();
 	}
 

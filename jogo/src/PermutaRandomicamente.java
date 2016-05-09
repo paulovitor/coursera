@@ -9,10 +9,13 @@ public class PermutaRandomicamente implements Embaralhador {
 		StringBuffer palavraEmbaralhada = new StringBuffer(palavra.length());
 		List<String> letras = Arrays.asList(palavra.split(""));
 		Collections.shuffle(letras);
-		for (String letra : letras) {
-			palavraEmbaralhada.append(letra);
-		}
+		letras.forEach(palavraEmbaralhada::append);
 		return palavraEmbaralhada.toString();
+	}
+
+	@Override
+	public int getDificuldade() {
+		return 3;
 	}
 
 }

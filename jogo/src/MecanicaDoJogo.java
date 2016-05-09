@@ -2,11 +2,11 @@ public interface MecanicaDoJogo {
 
 	String recuperaPalavraEmbaralhada();
 
-	boolean adivinha(String nextLine);
+	boolean adivinha(String resposta);
 
 	boolean podeTentarNovamente();
 
-	void pontuacao();
+	int pontuacao();
 
 	boolean terminou();
 
