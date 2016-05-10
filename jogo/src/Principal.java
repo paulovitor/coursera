@@ -23,7 +23,7 @@ public class Principal {
 		System.out.println("\n");
 		System.out.println("## Escolha o estilo de jogo:");
 		System.out.println("1) Número fixo de palavras (Você irá adivinhar 10 palavras com 2 tentativas extra)");
-		System.out.println("2) Número de erros (Você irá adivinhar até errar 5 vezes com 1 tentativa extra)");
+		System.out.println("2) Número de erros (Você irá adivinhar 20 palavras podendo errar 4 vezes com 1 tentativa extra)");
 		System.out.println("3) Morte súbita (Caso tenha um erro o jogo acaba)");
 
 		return FabricaMecanicaDoJogo.getInstancia().getMecanicaDoJogo(getOpcao(in));

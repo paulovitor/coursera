@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class MecanicaDoJogoBase implements MecanicaDoJogo {
 
@@ -8,6 +10,7 @@ public abstract class MecanicaDoJogoBase implements MecanicaDoJogo {
 	protected int limiteDeInteracoes;
 	private String palavra;
 	protected int pontuacao;
+	private List<String> palavrasApresentadas = new ArrayList<>();
 
 	public MecanicaDoJogoBase() {
 		banco = new BancoDePalavras();
@@ -17,6 +20,10 @@ public abstract class MecanicaDoJogoBase implements MecanicaDoJogo {
 	@Override
 	public String recuperaPalavraEmbaralhada() {
 		palavra = banco.recupera();
+		if (palavrasApresentadas.contains(palavra)) {
+			return recuperaPalavraEmbaralhada();
+		}
+		palavrasApresentadas.add(palavra);
 		return embaralhador.embaralha(palavra);
 	}
 
