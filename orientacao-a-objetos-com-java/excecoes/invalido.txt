@@ -1,0 +1,5 @@
+nome->Paulo
+sobrenome->Vitor->erro
+idade->28
+peso->70
+sexo->Masculino
