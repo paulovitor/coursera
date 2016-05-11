@@ -3,7 +3,7 @@ public class MorteSubita extends MecanicaDoJogoBase {
 
 	@Override
 	public String recuperaPalavraEmbaralhada() {
-		embaralhador = FabricaEmbaralhadores.getInstancia().getEmbaralhador();
+		embaralhador = FabricaEmbaralhadores.getEmbaralhador();
 		return super.recuperaPalavraEmbaralhada();
 	}
 

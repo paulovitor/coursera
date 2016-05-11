@@ -3,7 +3,7 @@ public class NumeroFixoDePalavras extends MecanicaDoJogoBase {
 
 	public NumeroFixoDePalavras() {
 		super();
-		embaralhador = FabricaEmbaralhadores.getInstancia().getEmbaralhador();
+		embaralhador = FabricaEmbaralhadores.getEmbaralhador();
 		limiteDeInteracoes = 10;
 	}
 
@@ -14,7 +14,8 @@ public class NumeroFixoDePalavras extends MecanicaDoJogoBase {
 
 	@Override
 	public int pontuacao() {
-		pontuacao += embaralhador.getDificuldade();
+		if (pontuacao > 0)
+			pontuacao += embaralhador.getDificuldade();
 		return super.pontuacao();
 	}
 

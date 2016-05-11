@@ -4,22 +4,14 @@ import java.util.Random;
 
 public class FabricaEmbaralhadores {
 
-	private static FabricaEmbaralhadores instancia;
-	
-	private Random random = new Random();
-	private List<Class<? extends Embaralhador>> embaralhadores;
+	private static Random random = new Random();
+	private static List<Class<? extends Embaralhador>> embaralhadores = Arrays.asList(InverteString.class,
+			PermutaRandomicamente.class, TrocaPorPares.class);
 
 	private FabricaEmbaralhadores() {
-		embaralhadores = Arrays.asList(InverteString.class, PermutaRandomicamente.class, TrocaPorPares.class);
 	}
 
-	public static FabricaEmbaralhadores getInstancia() {
-		if (instancia == null)
-			instancia = new FabricaEmbaralhadores();
-		return instancia;
-	}
-
-	public Embaralhador getEmbaralhador() {
+	public static Embaralhador getEmbaralhador() {
 		Class<? extends Embaralhador> embaralhador = embaralhadores.get(random.nextInt(embaralhadores.size() - 1));
 		try {
 			return embaralhador.newInstance();

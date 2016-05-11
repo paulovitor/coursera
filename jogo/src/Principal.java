@@ -26,7 +26,7 @@ public class Principal {
 		System.out.println("2) Número de erros (Você irá adivinhar 20 palavras podendo errar 4 vezes com 1 tentativa extra)");
 		System.out.println("3) Morte súbita (Caso tenha um erro o jogo acaba)");
 
-		return FabricaMecanicaDoJogo.getInstancia().getMecanicaDoJogo(getOpcao(in));
+		return FabricaMecanicaDoJogo.getMecanicaDoJogo(getOpcao(in));
 	}
 
 	private static int getOpcao(Scanner in) {
