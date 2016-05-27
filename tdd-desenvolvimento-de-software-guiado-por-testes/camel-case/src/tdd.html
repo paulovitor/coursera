@@ -7,14 +7,19 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+<style type="text/css">
+	.code {
+		font-size: 11px
+	}
+</style>
 </head>
 <body>
 	<div class="container">
 		<h1>Projeto de Quebra de Strings com CamelCase</h1>
 
 		<h3>Ciclo 1: Criação do cenário de testes mais simples</h3>
-		<h5>Teste adicionado:</h5>
-		<pre>
+		<h5 class="text-danger">Teste adicionado:</h5>
+		<pre class="code">
 @Test
 public void deveConverterStringSimples() {
 	List<String> palavras = CamelCase.converterCamelCase("nome");
@@ -26,14 +31,14 @@ public void deveConverterStringSimples() {
 }
 		</pre>
 		
-		<h5>Código antes:</h5>
-		<pre>
+		<h5 class="text-danger">Código antes:</h5>
+		<pre class="code">
 public static List<String> converterCamelCase(String original) {
 	return null;
 }
 		</pre>
-		<h5>Código depois:</h5>
-		<pre>
+		<h5 class="text-success">Código depois:</h5>
+		<pre class="code">
 public static List<String> converterCamelCase(String original) {
 	List<String> palavras = new ArrayList<>();
 	palavras.add(original);
@@ -42,8 +47,8 @@ public static List<String> converterCamelCase(String original) {
 		</pre>
 		
 		<h3>Ciclo 2: Inclusão do cenário de teste de String com 1ª letra maiúscula</h3>
-		<h5>Teste adicionado:</h5>
-		<pre>
+		<h5 class="text-danger">Teste adicionado:</h5>
+		<pre class="code">
 @Test
 public void deveConverterStringSimpleComPrimeiraLetraMaiuscula() {
 	List<String> palavras = CamelCase.converterCamelCase("Nome");
@@ -54,16 +59,16 @@ public void deveConverterStringSimpleComPrimeiraLetraMaiuscula() {
 	assertEquals(palavras.get(0), "nome");
 }
 		</pre>
-		<h5>Código antes:</h5>
-		<pre>
+		<h5 class="text-danger">Código antes:</h5>
+		<pre class="code">
 public static List<String> converterCamelCase(String original) {
 	List<String> palavras = new ArrayList<>();
 	palavras.add(original);
 	return palavras;
 }
 		</pre>
-		<h5>Código depois:</h5>
-		<pre>
+		<h5 class="text-success">Código depois:</h5>
+		<pre class="code">
 public static List<String> converterCamelCase(String original) {
 	List<String> palavras = new ArrayList<>();
 	palavras.add(original.toLowerCase());
@@ -72,8 +77,8 @@ public static List<String> converterCamelCase(String original) {
 		</pre>
 		
 		<h3>Ciclo 3: Inclusão de cenário de teste de String em CamelCase e refatoração nos métodos de teste</h3>
-		<h5>Teste adicionado:</h5>
-		<pre>
+		<h5 class="text-danger">Teste adicionado:</h5>
+		<pre class="code">
 @Test
 public void deveConverterStringComposta() {
 	List<String> palavras = CamelCase.converterCamelCase("nomeComposto");
@@ -85,16 +90,16 @@ public void deveConverterStringComposta() {
 	assertEquals(palavras.get(1), "composto");
 }
 		</pre>
-		<h5>Código antes:</h5>
-		<pre>
+		<h5 class="text-danger">Código antes:</h5>
+		<pre class="code">
 public static List<String> converterCamelCase(String original) {
 	List<String> palavras = new ArrayList<>();
 	palavras.add(original.toLowerCase());
 	return palavras;
 }
 		</pre>
-		<h5>Código depois:</h5>
-		<pre>
+		<h5 class="text-success">Código depois:</h5>
+		<pre class="code">
 public static List<String> converterCamelCase(String original) {
 	List<String> palavras = new ArrayList<>();
 	for (String palavra : original.split("(?<\\!(^|[A-Z]))(?=[A-Z])|(?<\\!^)(?=[A-Z][a-z])")) {
@@ -103,8 +108,8 @@ public static List<String> converterCamelCase(String original) {
 	return palavras;
 }
 		</pre>
-		<h5>Refatoração na classe de teste (Criação do método "assertStringSimples" para remover duplicação de código)</h5>
-		<pre>
+		<h5 class="text-primary">Refatoração na classe de teste (Criação do método "assertStringSimples" para remover duplicação de código)</h5>
+		<pre class="code">
 public class CamelCaseTest {
 
 	@Test
@@ -143,8 +148,8 @@ public class CamelCaseTest {
 		</pre>
 		
 		<h3>Ciclo 4: Inclusão de cenário de teste de String em CamelCase com 1ª letra maiúscula e refatoração nos métodos de teste</h3>
-		<h5>Teste adicionado:</h5>
-		<pre>
+		<h5 class="text-danger">Teste adicionado:</h5>
+		<pre class="code">
 @Test
 public void deveConverterStringCompostaComPrimeiroLetraMaiuscula() {
 	List<String> palavras = CamelCase.converterCamelCase("NomeComposto");
@@ -156,9 +161,9 @@ public void deveConverterStringCompostaComPrimeiroLetraMaiuscula() {
 	assertEquals(palavras.get(1), "composto");
 }
 		</pre>
-		<h5>Código se manteve o mesmo, pois os testes passaram!</h5>
-		<h5>Refatoração na classe de teste (Criação do método "assertStringComposta" para remover duplicação de código)</h5>
-		<pre>
+		<h5 class="text-success">Código se manteve o mesmo, pois os testes passaram!</h5>
+		<h5 class="text-primary">Refatoração na classe de teste (Criação do método "assertStringComposta" para remover duplicação de código)</h5>
+		<pre class="code">
 public class CamelCaseTest {
 
 	@Test
@@ -208,8 +213,8 @@ public class CamelCaseTest {
 		</pre>
 		
 		<h3>Ciclo 5: Inclusão do cenário de teste de String simples em UpperCase</h3>
-		<h5>Teste adicionado:</h5>
-		<pre>
+		<h5 class="text-danger">Teste adicionado:</h5>
+		<pre class="code">
 @Test
 public void deveConverterStringSimplesUpperCase() {
 	List<String> palavras = CamelCase.converterCamelCase("CPF");
@@ -217,8 +222,8 @@ public void deveConverterStringSimplesUpperCase() {
 	assertStringSimples(palavras, "CPF");
 }
 		</pre>
-		<h5>Código antes:</h5>
-		<pre>
+		<h5 class="text-danger">Código antes:</h5>
+		<pre class="code">
 public static List<String> converterCamelCase(String original) {
 	List<String> palavras = new ArrayList<>();
 	for (String palavra : original.split("(?<\\!(^|[A-Z]))(?=[A-Z])|(?<\\!^)(?=[A-Z][a-z])")) {
@@ -227,13 +232,14 @@ public static List<String> converterCamelCase(String original) {
 	return palavras;
 }
 		</pre>
-		<h5>Código depois:</h5>
-		<pre>
+		<h5 class="text-success">Código depois:</h5>
+		<pre class="code">
 public class CamelCase {
 
 	public static List<String> converterCamelCase(String original) {
 		List<String> palavras = new ArrayList<>();
-		for (String palavra : original.split("(?<\\!(^|[A-Z]))(?=[A-Z])|(?<\\!^)(?=[A-Z][a-z])")) {
+		for (String palavra : original.
+			split("(?<\\!(^|[A-Z]))(?=[A-Z])|(?<\\!^)(?=[A-Z][a-z])")) {
 			palavras.add(isUpperCase(palavra) ? palavra : palavra.toLowerCase());
 		}
 		return palavras;
@@ -250,8 +256,8 @@ public class CamelCase {
 		</pre>
 		
 		<h3>Ciclo 6: Inclusão de cenário de teste de String em CamelCase com 2ª palavra em UpperCase</h3>
-		<h5>Teste adicionado:</h5>
-		<pre>
+		<h5 class="text-danger">Teste adicionado:</h5>
+		<pre class="code">
 @Test
 public void deveConverterStringCompostaComUmaStringUpperCase() {
 	List<String> palavras = CamelCase.converterCamelCase("numeroCPF");
@@ -259,11 +265,11 @@ public void deveConverterStringCompostaComUmaStringUpperCase() {
 	assertStringComposta(palavras, "numero", "CPF");
 }
 		</pre>
-		<h5>Código se manteve o mesmo, pois os testes passaram!</h5>
+		<h5 class="text-success">Código se manteve o mesmo, pois os testes passaram!</h5>
 		
 		<h3>Ciclo 7: Inclusão do cenário de teste de String em CamelCase com 3 palavras e 1 em UpperCase</h3>
-		<h5>Teste adicionado:</h5>
-		<pre>
+		<h5 class="text-danger">Teste adicionado:</h5>
+		<pre class="code">
 @Test
 public void deveConverterStringCompostaDeTresPalavrasComUmaStringUpperCase() {
 	List<String> palavras = CamelCase.converterCamelCase("numeroCPFContribuinte");
@@ -271,11 +277,11 @@ public void deveConverterStringCompostaDeTresPalavrasComUmaStringUpperCase() {
 	assertStringComposta(palavras, "numero", "CPF", "contribuinte");
 }
 		</pre>
-		<h5>Código se manteve o mesmo, pois os testes passaram!</h5>
+		<h5 class="text-success">Código se manteve o mesmo, pois os testes passaram!</h5>
 		
 		<h3>Ciclo 8: Inclusão de cenário de teste de String em CamelCase com 3 palavras e 1 palavra númerica e refatoração na classe principal</h3>
-		<h5>Teste adicionado:</h5>
-		<pre>
+		<h5 class="text-danger">Teste adicionado:</h5>
+		<pre class="code">
 @Test
 public void deveConverterStringCompostaDeTresPalavrasComNumero() {
 	List<String> palavras = CamelCase.converterCamelCase("recupera10Primeiros");
@@ -283,13 +289,14 @@ public void deveConverterStringCompostaDeTresPalavrasComNumero() {
 	assertStringComposta(palavras, "recupera", "10", "primeiros");
 }
 		</pre>
-		<h5>Código antes:</h5>
-		<pre>
+		<h5 class="text-danger">Código antes:</h5>
+		<pre class="code">
 public class CamelCase {
 
 	public static List<String> converterCamelCase(String original) {
 		List<String> palavras = new ArrayList<>();
-		for (String palavra : original.split("(?<\\!(^|[A-Z]))(?=[A-Z])|(?<\\!^)(?=[A-Z][a-z])")) {
+		for (String palavra : original.
+			split("(?<\\!(^|[A-Z]))(?=[A-Z])|(?<\\!^)(?=[A-Z][a-z])")) {
 			palavras.add(isUpperCase(palavra) ? palavra : palavra.toLowerCase());
 		}
 		return palavras;
@@ -304,16 +311,19 @@ public class CamelCase {
 
 }
 		</pre>
-		<h5>Código depois:</h5>
-		<pre>
+		<h5 class="text-success">Código depois:</h5>
+		<pre class="code">
 public class CamelCase {
 
 	public static List<String> converterCamelCase(String original) {
 		List<String> palavras = new ArrayList<>();
-		for (String palavra : original.split("(?<\\!(^|[A-Z]))(?=[A-Z])|(?<\\!^)(?=[A-Z][a-z])")) {
+		for (String palavra : original.
+			split("(?<\\!(^|[A-Z]))(?=[A-Z])|(?<\\!^)(?=[A-Z][a-z])")) {
 			if (stringContemNumero(palavra)) {
-				for (String palavraComNumero : palavra.split("(?<=\\D)(?=\\d)|(?<=\\d)(?=\\D)"))
-					palavras.add(isUpperCase(palavraComNumero) ? palavraComNumero : palavraComNumero.toLowerCase());
+				for (String palavraComNumero : palavra.
+					split("(?<=\\D)(?=\\d)|(?<=\\d)(?=\\D)"))
+					palavras.add(isUpperCase(palavraComNumero) ? 
+						palavraComNumero : palavraComNumero.toLowerCase());
 			} else
 				palavras.add(isUpperCase(palavra) ? palavra : palavra.toLowerCase());
 		}
@@ -333,11 +343,12 @@ public class CamelCase {
 
 }
 		</pre>
-		<h5>Refatoração na classe principal (Criação de constantes para as "regexs" com o objetivo de facilitar a leitura do código)</h5>
-		<pre>
+		<h5 class="text-primary">Refatoração na classe principal (Criação de constantes para as "regexs" com o objetivo de facilitar a leitura do código)</h5>
+		<pre class="code">
 public class CamelCase {
 
-	private static final String CAMEL_CASE_PATTERN = "(?<\\!(^|[A-Z]))(?=[A-Z])|(?<\\!^)(?=[A-Z][a-z])";
+	private static final String CAMEL_CASE_PATTERN = 
+		"(?<\\!(^|[A-Z]))(?=[A-Z])|(?<\\!^)(?=[A-Z][a-z])";
 	private static final String CONTAINS_NUMBER_PATTERN = ".*\\d.*";
 	private static final String NUMBER_PATTERN = "(?<=\\D)(?=\\d)|(?<=\\d)(?=\\D)";
 
@@ -346,7 +357,8 @@ public class CamelCase {
 		for (String palavra : original.split(CAMEL_CASE_PATTERN)) {
 			if (stringContemNumero(palavra)) {
 				for (String palavraComNumero : palavra.split(NUMBER_PATTERN))
-					palavras.add(isUpperCase(palavraComNumero) ? palavraComNumero : palavraComNumero.toLowerCase());
+					palavras.add(isUpperCase(palavraComNumero) ? 
+						palavraComNumero : palavraComNumero.toLowerCase());
 			} else
 				palavras.add(isUpperCase(palavra) ? palavra : palavra.toLowerCase());
 		}
@@ -368,18 +380,19 @@ public class CamelCase {
 		</pre>
 		
 		<h3>Ciclo 9: Inclusão de cenário de teste de String inválida que começa com número e criação de classe de exceção</h3>
-		<h5>Teste adicionado:</h5>
-		<pre>
+		<h5 class="text-danger">Teste adicionado:</h5>
+		<pre class="code">
 @Test(expected = StringInvalidaException.class)
 public void naoDeveConverterStringQueComecaComNumeros() {
 	CamelCase.converterCamelCase("10Primeiros");
 }
 		</pre>
-		<h5>Código antes:</h5>
-		<pre>
+		<h5 class="text-danger">Código antes:</h5>
+		<pre class="code">
 public class CamelCase {
 
-	private static final String CAMEL_CASE_PATTERN = "(?<\\!(^|[A-Z]))(?=[A-Z])|(?<\\!^)(?=[A-Z][a-z])";
+	private static final String CAMEL_CASE_PATTERN = 
+		"(?<\\!(^|[A-Z]))(?=[A-Z])|(?<\\!^)(?=[A-Z][a-z])";
 	private static final String CONTAINS_NUMBER_PATTERN = ".*\\d.*";
 	private static final String NUMBER_PATTERN = "(?<=\\D)(?=\\d)|(?<=\\d)(?=\\D)";
 
@@ -388,7 +401,8 @@ public class CamelCase {
 		for (String palavra : original.split(CAMEL_CASE_PATTERN)) {
 			if (stringContemNumero(palavra)) {
 				for (String palavraComNumero : palavra.split(NUMBER_PATTERN))
-					palavras.add(isUpperCase(palavraComNumero) ? palavraComNumero : palavraComNumero.toLowerCase());
+					palavras.add(isUpperCase(palavraComNumero) ? 
+						palavraComNumero : palavraComNumero.toLowerCase());
 			} else
 				palavras.add(isUpperCase(palavra) ? palavra : palavra.toLowerCase());
 		}
@@ -408,11 +422,12 @@ public class CamelCase {
 
 }
 		</pre>
-		<h5>Código depois:</h5>
-		<pre>
+		<h5 class="text-success">Código depois:</h5>
+		<pre class="code">
 public class CamelCase {
 
-	private static final String CAMEL_CASE_PATTERN = "(?<\\!(^|[A-Z]))(?=[A-Z])|(?<\\!^)(?=[A-Z][a-z])";
+	private static final String CAMEL_CASE_PATTERN = 
+		"(?<\\!(^|[A-Z]))(?=[A-Z])|(?<\\!^)(?=[A-Z][a-z])";
 	private static final String CONTAINS_NUMBER_PATTERN = ".*\\d.*";
 	private static final String NUMBER_PATTERN = "(?<=\\D)(?=\\d)|(?<=\\d)(?=\\D)";
 
@@ -423,7 +438,8 @@ public class CamelCase {
 		for (String palavra : original.split(CAMEL_CASE_PATTERN)) {
 			if (stringContemNumero(palavra)) {
 				for (String palavraComNumero : palavra.split(NUMBER_PATTERN))
-					palavras.add(isUpperCase(palavraComNumero) ? palavraComNumero : palavraComNumero.toLowerCase());
+					palavras.add(isUpperCase(palavraComNumero) ? 
+						palavraComNumero : palavraComNumero.toLowerCase());
 			} else
 				palavras.add(isUpperCase(palavra) ? palavra : palavra.toLowerCase());
 		}
@@ -445,18 +461,19 @@ public class CamelCase {
 		</pre>
 		
 		<h3>Ciclo 10: Inclusão de cenário de teste de String inválida que contém caracter especial</h3>
-		<h5>Teste adicionado:</h5>
-		<pre>
+		<h5 class="text-danger">Teste adicionado:</h5>
+		<pre class="code">
 @Test(expected = StringInvalidaException.class)
 public void naoDeveConverterStringComCaracteresEspeciais() {
 	CamelCase.converterCamelCase("nome#Composto");
 }
 		</pre>
-		<h5>Código antes:</h5>
-		<pre>
+		<h5 class="text-danger">Código antes:</h5>
+		<pre class="code">
 public class CamelCase {
 
-	private static final String CAMEL_CASE_PATTERN = "(?<\\!(^|[A-Z]))(?=[A-Z])|(?<\\!^)(?=[A-Z][a-z])";
+	private static final String CAMEL_CASE_PATTERN = 
+		"(?<\\!(^|[A-Z]))(?=[A-Z])|(?<\\!^)(?=[A-Z][a-z])";
 	private static final String CONTAINS_NUMBER_PATTERN = ".*\\d.*";
 	private static final String NUMBER_PATTERN = "(?<=\\D)(?=\\d)|(?<=\\d)(?=\\D)";
 
@@ -467,7 +484,8 @@ public class CamelCase {
 		for (String palavra : original.split(CAMEL_CASE_PATTERN)) {
 			if (stringContemNumero(palavra)) {
 				for (String palavraComNumero : palavra.split(NUMBER_PATTERN))
-					palavras.add(isUpperCase(palavraComNumero) ? palavraComNumero : palavraComNumero.toLowerCase());
+					palavras.add(isUpperCase(palavraComNumero) ? 
+						palavraComNumero : palavraComNumero.toLowerCase());
 			} else
 				palavras.add(isUpperCase(palavra) ? palavra : palavra.toLowerCase());
 		}
@@ -487,11 +505,12 @@ public class CamelCase {
 
 }
 		</pre>
-		<h5>Código depois:</h5>
-		<pre>
+		<h5 class="text-success">Código depois:</h5>
+		<pre class="code">
 public class CamelCase {
 
-	private static final String CAMEL_CASE_PATTERN = "(?<\\!(^|[A-Z]))(?=[A-Z])|(?<\\!^)(?=[A-Z][a-z])";
+	private static final String CAMEL_CASE_PATTERN = 
+		"(?<\\!(^|[A-Z]))(?=[A-Z])|(?<\\!^)(?=[A-Z][a-z])";
 	private static final String CONTAINS_NUMBER_PATTERN = ".*\\d.*";
 	private static final String NUMBER_PATTERN = "(?<=\\D)(?=\\d)|(?<=\\d)(?=\\D)";
 	private static final String SPECIAL_PATTERN = ".*[!@#$%^&*()_].*";
@@ -500,12 +519,14 @@ public class CamelCase {
 		if (Character.isDigit(original.charAt(0)))
 			throw new StringInvalidaException("Não deve começar com números!");
 		if (original.matches(SPECIAL_PATTERN))
-			throw new StringInvalidaException("Caracteres especiais não são permitidos, somente letras e números!");
+			throw new StringInvalidaException(
+				"Caracteres especiais não são permitidos, somente letras e números!");
 		List<String> palavras = new ArrayList<>();
 		for (String palavra : original.split(CAMEL_CASE_PATTERN)) {
 			if (stringContemNumero(palavra)) {
 				for (String palavraComNumero : palavra.split(NUMBER_PATTERN))
-					palavras.add(isUpperCase(palavraComNumero) ? palavraComNumero : palavraComNumero.toLowerCase());
+					palavras.add(isUpperCase(palavraComNumero) ? 
+						palavraComNumero : palavraComNumero.toLowerCase());
 			} else
 				palavras.add(isUpperCase(palavra) ? palavra : palavra.toLowerCase());
 		}
@@ -525,11 +546,12 @@ public class CamelCase {
 
 }
 		</pre>
-		<h5>Refatoração na classe principal (Criação de método "validaString" com objetivo de manter o método "converterCamelCase" mais enxuto)</h5>
-		<pre>
+		<h5 class="text-primary">Refatoração na classe principal (Criação de método "validaString" com objetivo de manter o método "converterCamelCase" mais enxuto)</h5>
+		<pre class="code">
 public class CamelCase {
 
-	private static final String CAMEL_CASE_PATTERN = "(?<\\!(^|[A-Z]))(?=[A-Z])|(?<\\!^)(?=[A-Z][a-z])";
+	private static final String CAMEL_CASE_PATTERN = 
+		"(?<\\!(^|[A-Z]))(?=[A-Z])|(?<\\!^)(?=[A-Z][a-z])";
 	private static final String CONTAINS_NUMBER_PATTERN = ".*\\d.*";
 	private static final String NUMBER_PATTERN = "(?<=\\D)(?=\\d)|(?<=\\d)(?=\\D)";
 	private static final String SPECIAL_PATTERN = ".*[!@#$%^&*()_].*";
@@ -540,7 +562,8 @@ public class CamelCase {
 		for (String palavra : original.split(CAMEL_CASE_PATTERN)) {
 			if (stringContemNumero(palavra)) {
 				for (String palavraComNumero : palavra.split(NUMBER_PATTERN))
-					palavras.add(isUpperCase(palavraComNumero) ? palavraComNumero : palavraComNumero.toLowerCase());
+					palavras.add(isUpperCase(palavraComNumero) ? 
+						palavraComNumero : palavraComNumero.toLowerCase());
 			} else
 				palavras.add(isUpperCase(palavra) ? palavra : palavra.toLowerCase());
 		}
@@ -551,7 +574,8 @@ public class CamelCase {
 		if (Character.isDigit(string.charAt(0)))
 			throw new StringInvalidaException("Não deve começar com números!");
 		if (string.matches(SPECIAL_PATTERN))
-			throw new StringInvalidaException("Caracteres especiais não são permitidos, somente letras e números!");
+			throw new StringInvalidaException(
+				"Caracteres especiais não são permitidos, somente letras e números!");
 	}
 
 	private static boolean stringContemNumero(String palavra) {
