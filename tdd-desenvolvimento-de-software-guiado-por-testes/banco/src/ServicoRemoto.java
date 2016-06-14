@@ -1,5 +1,4 @@
 
-
 public interface ServicoRemoto {
 
 	Conta recuperarConta(String numero);

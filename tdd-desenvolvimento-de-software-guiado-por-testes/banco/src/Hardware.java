@@ -1,11 +1,9 @@
 
-
 public interface Hardware {
 
-	String pegarNumeroDaContaCartao() throws FalhaFuncionamento;
+	String pegarNumeroDaContaCartao() throws FalhaNoLogin;
 
-	void entregarDinheiro() throws FalhaFuncionamento;
+	void entregarDinheiro() throws FalhaAoEntregarDinheiro;
 
-	void lerEnvelope() throws FalhaFuncionamento;
-
+	void lerEnvelope() throws FalhaAoLerEnvelope;
 }

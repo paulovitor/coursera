@@ -1,5 +1,4 @@
 
-
 public class MockHardware implements Hardware {
 
 	@Override
