@@ -1,4 +1,4 @@
-package banco;
+
 
 public class MockHardwareComFalhaFuncionamento implements Hardware {
 

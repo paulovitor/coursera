@@ -1,4 +1,4 @@
-package banco;
+
 
 import static org.junit.Assert.assertEquals;
 
@@ -19,5 +19,4 @@ public class MockServicoRemoto implements ServicoRemoto {
 	public void verificaSaldoConta(double valorEsperado) {
 		assertEquals(valorEsperado, contaEsperada.getSaldo(), 0.01);
 	}
-
 }

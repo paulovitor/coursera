@@ -1,4 +1,4 @@
-package banco;
+
 
 public class CaixaEletronico {
 
@@ -16,7 +16,7 @@ public class CaixaEletronico {
 		return "O saldo é R$ " + conta.getSaldo();
 	}
 
-	public String sacar(Double valor) {
+	public String sacar(double valor) {
 		Conta conta = servicoRemoto.recuperarConta(numero);
 		if (conta.getSaldo() < valor)
 			return "Saldo insuficiente";
@@ -28,12 +28,16 @@ public class CaixaEletronico {
 	public String depositar(double valor) {
 		Conta conta = servicoRemoto.recuperarConta(numero);
 		conta.deposita(valor);
+		servicoRemoto.persistirConta(conta);
 		return "Depósito recebido com sucesso";
 	}
 
-	public String login() throws FalhaFuncionamento {
-		numero = hardware.pegarNumeroDaContaCartao();
+	public String login() {
+		try {
+			numero = hardware.pegarNumeroDaContaCartao();
+		} catch (FalhaFuncionamento e) {
+			return "Não foi possível autenticar o usuário";
+		}
 		return "Usuário Autenticado";
 	}
-
 }

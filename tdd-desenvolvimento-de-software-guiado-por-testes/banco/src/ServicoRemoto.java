@@ -1,4 +1,4 @@
-package banco;
+
 
 public interface ServicoRemoto {
 

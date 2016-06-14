@@ -1,4 +1,4 @@
-package banco;
+
 
 import static org.junit.Assert.assertEquals;
 
@@ -42,13 +42,13 @@ public class CaixaEletronicoTest {
 	}
 
 	@Test
-	public void deveFazerLogin() throws FalhaFuncionamento {
+	public void deveFazerLogin() {
 		assertEquals("Usuário Autenticado", caixaEletronico.login());
 	}
 
-	@Test(expected = FalhaFuncionamento.class)
+	@Test
 	public void naoDeveFazerLoginDevidoAUmaFalhaDeFuncionamento() throws FalhaFuncionamento {
 		caixaEletronico = new CaixaEletronico(servicoRemoto, new MockHardwareComFalhaFuncionamento());
-		caixaEletronico.login();
+		assertEquals("Não foi possível autenticar o usuário", caixaEletronico.login());
 	}
 }

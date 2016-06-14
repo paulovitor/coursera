@@ -1,4 +1,3 @@
-package banco;
 
 public class FalhaFuncionamento extends Exception {
 
