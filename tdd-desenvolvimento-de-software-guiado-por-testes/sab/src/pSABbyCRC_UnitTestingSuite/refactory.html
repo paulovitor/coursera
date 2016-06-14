@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Refatoração no SAB – Sistema de Automação de Biblioteca</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+<style type="text/css">
+.code {
+	font-size: 11px
+}
+
+.yellow {
+	background: #ffff99;
+}
+
+.green {
+	background: #ccff66;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Refatoração no SAB – Sistema de Automação de Biblioteca</h1>
+
+		<h3>Ciclo 1: Refatoração em ifs com expressões booleanas
+			negativas</h3>
+		<h5>
+			<b>Antes:</b>
+		</h5>
+		<div
+			style='background: #FFFFFF; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px;'>
+			<strong><font color='#7f0055'>public</font></strong>&nbsp;<strong><font
+				color='#7f0055'>void</font></strong>&nbsp;registraUsuario(String&nbsp;nome) <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font
+				color='#7f0055'>throws</font></strong>&nbsp;UsuarioJaRegistradoException,&nbsp;UsuarioComNomeVazioException,&nbsp;UsuarioInexistenteException&nbsp;{
+			<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font
+				color='#7f0055'>if</font></strong>&nbsp;(
+			<mark class="yellow">
+				nome&nbsp;!=&nbsp;<strong><font color='#7f0055'>null</font></strong>
+			</mark>
+			)&nbsp;{ <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font
+				color='#7f0055'>if</font></strong>&nbsp;(
+			<mark class="yellow">!nome.isEmpty()</mark>
+			)&nbsp;{ <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Usuario&nbsp;usuario&nbsp;=&nbsp;<strong><font
+				color='#7f0055'>new</font></strong>&nbsp;Usuario(nome); <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font
+				color='#7f0055'>if</font></strong>&nbsp;(
+			<mark class="yellow">!_usuarios.contains(usuario)</mark>
+			)&nbsp;{ <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_usuarios.add(usuario);
+			<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<strong><font
+				color='#7f0055'>else</font></strong> <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font
+				color='#7f0055'>throw</font></strong>&nbsp;<strong><font
+				color='#7f0055'>new</font></strong>&nbsp;UsuarioJaRegistradoException( <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font
+				color='#2a00ff'>"--->Já&nbsp;existe&nbsp;usuário&nbsp;com&nbsp;o&nbsp;nome&nbsp;\"</font><font
+				color='#2a00ff'>"&nbsp;+&nbsp;nome&nbsp;+&nbsp;"</font>\<font
+				color='#2a00ff'>"!&nbsp;Use&nbsp;outro&nbsp;nome!"</font>); <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<strong><font
+				color='#7f0055'>else</font></strong> <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font
+				color='#7f0055'>throw</font></strong>&nbsp;<strong><font
+				color='#7f0055'>new</font></strong>&nbsp;UsuarioComNomeVazioException(<font
+				color='#2a00ff'>"--->Não&nbsp;pode&nbsp;registrar&nbsp;usuario&nbsp;com&nbsp;nome&nbsp;vazio!"</font>);
+			<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<strong><font
+				color='#7f0055'>else</font></strong> <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font
+				color='#7f0055'>throw</font></strong>&nbsp;<strong><font
+				color='#7f0055'>new</font></strong>&nbsp;UsuarioInexistenteException(<font
+				color='#2a00ff'>"--->Não&nbsp;pode&nbsp;registrar&nbsp;usuario&nbsp;inexistente!"</font>);
+			<br />&nbsp;&nbsp;&nbsp;&nbsp;}
+		</div>
+
+		<h5>
+			<b>Tipo Mau Cheiro/Técnica de Refatoração:</b><br />Ifs com
+			expressões booleanas negativas/Tornar as expressões booleanas
+			positivas, uma de cada vez
+		</h5>
+		<h5>
+			<b>Depois:</b>
+		</h5>
+		<div
+			style='background: #FFFFFF; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px;'>
+			<strong><font color='#7f0055'>public</font></strong>&nbsp;<strong><font
+				color='#7f0055'>void</font></strong>&nbsp;registraUsuario(String&nbsp;nome) <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font
+				color='#7f0055'>throws</font></strong>&nbsp;UsuarioJaRegistradoException,&nbsp;UsuarioComNomeVazioException,&nbsp;UsuarioInexistenteException&nbsp;{
+			<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font
+				color='#7f0055'>if</font></strong>&nbsp;(
+			<mark class="green">
+				nome&nbsp;==&nbsp;<strong><font color='#7f0055'>null</font></strong>
+			</mark>
+			) <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font
+				color='#7f0055'>throw</font></strong>&nbsp;<strong><font
+				color='#7f0055'>new</font></strong>&nbsp;UsuarioInexistenteException(<font
+				color='#2a00ff'>"--->Não&nbsp;pode&nbsp;registrar&nbsp;usuario&nbsp;inexistente!"</font>);
+			<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font
+				color='#7f0055'>else</font></strong>&nbsp;{ <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font
+				color='#7f0055'>if</font></strong>&nbsp;(
+			<mark class="green">nome.isEmpty()</mark>
+			) <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font
+				color='#7f0055'>throw</font></strong>&nbsp;<strong><font
+				color='#7f0055'>new</font></strong>&nbsp;UsuarioComNomeVazioException(<font
+				color='#2a00ff'>"--->Não&nbsp;pode&nbsp;registrar&nbsp;usuario&nbsp;com&nbsp;nome&nbsp;vazio!"</font>);
+			<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font
+				color='#7f0055'>else</font></strong>&nbsp;{ <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Usuario&nbsp;usuario&nbsp;=&nbsp;<strong><font
+				color='#7f0055'>new</font></strong>&nbsp;Usuario(nome); <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font
+				color='#7f0055'>if</font></strong>&nbsp;(
+			<mark class="green">_usuarios.contains(usuario)</mark>
+			) <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font
+				color='#7f0055'>throw</font></strong>&nbsp;<strong><font
+				color='#7f0055'>new</font></strong>&nbsp;UsuarioJaRegistradoException( <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font
+				color='#2a00ff'>"--->Já&nbsp;existe&nbsp;usuário&nbsp;com&nbsp;o&nbsp;nome&nbsp;\"</font><font
+				color='#2a00ff'>"&nbsp;+&nbsp;nome&nbsp;+&nbsp;"</font>\<font
+				color='#2a00ff'>"!&nbsp;Use&nbsp;outro&nbsp;nome!"</font>); <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font
+				color='#7f0055'>else</font></strong> <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_usuarios.add(usuario);
+			<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+			<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <br />&nbsp;&nbsp;&nbsp;&nbsp;}
+		</div>
+
+		<h5>
+			<b>Imagem:</b>
+		</h5>
+		<div class="row">
+			<img width="100%" src="http://drive.google.com/uc?export=view&id=0B9gT-PPKiG2yMEo2YktEVng3RTQ" />
+		</div>
+
+		<h5>
+			<b>Lista de maus cheiros:</b>
+		</h5>
+		<ol>
+			<li><s>Ifs com expressões booleanas negativas</s></li>
+			<li>Ifs aninhados</li>
+		</ol>
+
+		<h3>Ciclo 2: Refatoração em ifs aninhados</h3>
+		<h5>
+			<b>Antes:</b>
+		</h5>
+		<div
+			style='background: #FFFFFF; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px;'>
+			<strong><font color='#7f0055'>public</font></strong>&nbsp;<strong><font
+				color='#7f0055'>void</font></strong>&nbsp;registraUsuario(String&nbsp;nome) <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font
+				color='#7f0055'>throws</font></strong>&nbsp;UsuarioJaRegistradoException,&nbsp;UsuarioComNomeVazioException,&nbsp;UsuarioInexistenteException&nbsp;{
+			<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font
+				color='#7f0055'>if</font></strong>&nbsp;(nome&nbsp;==&nbsp;<strong><font
+				color='#7f0055'>null</font></strong>) <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font
+				color='#7f0055'>throw</font></strong>&nbsp;<strong><font
+				color='#7f0055'>new</font></strong>&nbsp;UsuarioInexistenteException(<font
+				color='#2a00ff'>"--->Não&nbsp;pode&nbsp;registrar&nbsp;usuario&nbsp;inexistente!"</font>);
+			<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<mark class="yellow">
+				<strong><font color='#7f0055'>else</font></strong>&nbsp;{
+			</mark>
+			<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font
+				color='#7f0055'>if</font></strong>&nbsp;(nome.isEmpty()) <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font
+				color='#7f0055'>throw</font></strong>&nbsp;<strong><font
+				color='#7f0055'>new</font></strong>&nbsp;UsuarioComNomeVazioException(<font
+				color='#2a00ff'>"--->Não&nbsp;pode&nbsp;registrar&nbsp;usuario&nbsp;com&nbsp;nome&nbsp;vazio!"</font>);
+			<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<mark class="yellow">
+				<strong><font color='#7f0055'>else</font></strong>&nbsp;{
+			</mark>
+			<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Usuario&nbsp;usuario&nbsp;=&nbsp;<strong><font
+				color='#7f0055'>new</font></strong>&nbsp;Usuario(nome); <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font
+				color='#7f0055'>if</font></strong>&nbsp;(_usuarios.contains(usuario)) <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font
+				color='#7f0055'>throw</font></strong>&nbsp;<strong><font
+				color='#7f0055'>new</font></strong>&nbsp;UsuarioJaRegistradoException( <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font
+				color='#2a00ff'>"--->Já&nbsp;existe&nbsp;usuário&nbsp;com&nbsp;o&nbsp;nome&nbsp;\"</font><font
+				color='#2a00ff'>"&nbsp;+&nbsp;nome&nbsp;+&nbsp;"</font>\<font
+				color='#2a00ff'>"!&nbsp;Use&nbsp;outro&nbsp;nome!"</font>); <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<mark class="yellow">
+				<strong><font color='#7f0055'>else</font></strong>
+			</mark>
+			<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_usuarios.add(usuario);
+			<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+			<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <br />&nbsp;&nbsp;&nbsp;&nbsp;}
+		</div>
+
+		<h5>
+			<b>Tipo Mau Cheiro/Técnica de Refatoração:</b><br />Ifs
+			aninhados/Replace Nested Conditional with Guard Clauses
+		</h5>
+		<h5>
+			<b>Depois:</b>
+		</h5>
+		<div
+			style='background: #FFFFFF; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px;'>
+			<strong><font color='#7f0055'>public</font></strong>&nbsp;<strong><font
+				color='#7f0055'>void</font></strong>&nbsp;registraUsuario(String&nbsp;nome) <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font
+				color='#7f0055'>throws</font></strong>&nbsp;UsuarioJaRegistradoException,&nbsp;UsuarioComNomeVazioException,&nbsp;UsuarioInexistenteException&nbsp;{
+			<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font
+				color='#7f0055'>if</font></strong>&nbsp;(nome&nbsp;==&nbsp;<strong><font
+				color='#7f0055'>null</font></strong>) <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font
+				color='#7f0055'>throw</font></strong>&nbsp;<strong><font
+				color='#7f0055'>new</font></strong>&nbsp;UsuarioInexistenteException(<font
+				color='#2a00ff'>"--->Não&nbsp;pode&nbsp;registrar&nbsp;usuario&nbsp;inexistente!"</font>);
+			<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font
+				color='#7f0055'>if</font></strong>&nbsp;(nome.isEmpty()) <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font
+				color='#7f0055'>throw</font></strong>&nbsp;<strong><font
+				color='#7f0055'>new</font></strong>&nbsp;UsuarioComNomeVazioException(<font
+				color='#2a00ff'>"--->Não&nbsp;pode&nbsp;registrar&nbsp;usuario&nbsp;com&nbsp;nome&nbsp;vazio!"</font>);
+			<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Usuario&nbsp;usuario&nbsp;=&nbsp;<strong><font
+				color='#7f0055'>new</font></strong>&nbsp;Usuario(nome); <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font
+				color='#7f0055'>if</font></strong>&nbsp;(_usuarios.contains(usuario)) <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font
+				color='#7f0055'>throw</font></strong>&nbsp;<strong><font
+				color='#7f0055'>new</font></strong>&nbsp;UsuarioJaRegistradoException( <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font
+				color='#2a00ff'>"--->Já&nbsp;existe&nbsp;usuário&nbsp;com&nbsp;o&nbsp;nome&nbsp;\"</font><font
+				color='#2a00ff'>"&nbsp;+&nbsp;nome&nbsp;+&nbsp;"</font>\<font
+				color='#2a00ff'>"!&nbsp;Use&nbsp;outro&nbsp;nome!"</font>); <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_usuarios.add(usuario);
+			<br />&nbsp;&nbsp;&nbsp;&nbsp;}
+		</div>
+
+		<h5>
+			<b>Imagem:</b>
+		</h5>
+		<div class="row">
+			<img width="100%" src="http://drive.google.com/uc?export=view&id=0B9gT-PPKiG2yMEo2YktEVng3RTQ" />
+		</div>
+
+		<h5>
+			<b>Lista de maus cheiros:</b>
+		</h5>
+		<ol>
+			<li><s>Ifs com expressões booleanas negativas</s></li>
+			<li><s>Ifs aninhados</s></li>
+		</ol>
+
+		<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script
+			src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	</div>
+</body>
+</html>
