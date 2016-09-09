@@ -1,3 +1,5 @@
+package model;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -9,9 +11,8 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.Select;
 
-public class ConvertFuntionalTest {
+public class TradutorFunctionalTest {
 
 	private WebDriver driver;
 	private String baseUrl;
@@ -25,22 +26,27 @@ public class ConvertFuntionalTest {
 	}
 
 	@Test
-	public void testConvertFahrenheitParaCelsius() throws Exception {
-		driver.get(baseUrl + "/celsius-fahrenheit/");
-		new Select(driver.findElement(By.name("conversao"))).selectByVisibleText("Fahrenheit para Celsius");
-		driver.findElement(By.name("valor")).clear();
-		driver.findElement(By.name("valor")).sendKeys("212");
+	public void deveTraduzirPalavrasQueExistemNoArquivo() {
+		driver.get(baseUrl + "/tradutor/");
+		driver.findElement(By.name("palavra")).clear();
+		driver.findElement(By.name("palavra")).sendKeys("luz");
 		driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
-		assertEquals("Resultado: 100", driver.findElement(By.cssSelector("h3")).getText());
+		assertEquals("Tradução: light", driver.findElement(By.cssSelector("p")).getText());
+		
+		driver.get(baseUrl + "/tradutor/");
+		driver.findElement(By.name("palavra")).clear();
+		driver.findElement(By.name("palavra")).sendKeys("carro");
+		driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
+		assertEquals("Tradução: car", driver.findElement(By.cssSelector("p")).getText());
 	}
 
 	@Test
-	public void testConvertCelsiusParaFahrenheit() throws Exception {
-		driver.get(baseUrl + "/celsius-fahrenheit/");
-		driver.findElement(By.name("valor")).clear();
-		driver.findElement(By.name("valor")).sendKeys("100");
+	public void naoDeveTraduzirPalavraQueNaoExisteNoArquivo() {
+		driver.get(baseUrl + "/tradutor/");
+		driver.findElement(By.name("palavra")).clear();
+		driver.findElement(By.name("palavra")).sendKeys("bom");
 		driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
-		assertEquals("Resultado: 212", driver.findElement(By.cssSelector("h3")).getText());
+		assertEquals("Tradução: bom", driver.findElement(By.cssSelector("p")).getText());
 	}
 
 	@After
