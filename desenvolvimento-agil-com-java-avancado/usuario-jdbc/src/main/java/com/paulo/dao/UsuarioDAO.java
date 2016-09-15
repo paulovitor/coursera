@@ -5,7 +5,7 @@ import java.util.List;
 import com.paulo.model.Usuario;
 
 public interface UsuarioDAO {
-	
+
 	public static final String USUARIO = "coursera";
 	public static final String SENHA = "coursera";
 	public static final String JDBC_POSTGRESQL = "jdbc:postgresql://127.0.0.1:5432/coursera";

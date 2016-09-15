@@ -2,4 +2,5 @@
 <dataset>
 	<usuario login="jesus" email="jesus@coursera.org" nome="Jesus" senha="jesus" pontos="10"/>
 	<usuario login="mariazinha" email="maria@coursera.org" nome="Maria" senha="marie" pontos="20"/>
+	<usuario login="zezinho" email="jose@coursera.org" nome="José" senha="joseph" pontos="30"/>
 </dataset>
