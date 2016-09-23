@@ -21,9 +21,12 @@
 <body>
 	<div class="container">
 		<form class="form-login" method="post" action="login">
+			<c:if test="${mensagem != null}">
+				<div class="alert alert-success" role="alert">${mensagem}</div>
+			</c:if>
 			<c:if test="${erro != null}">
 				<div class="alert alert-danger" role="alert">
-						${erro} - <a href="cadastro">Ir para tela de cadastro</a>
+					${erro} - <a href="cadastro">Ir para tela de cadastro</a>
 				</div>
 			</c:if>
 			<div class="form-group">

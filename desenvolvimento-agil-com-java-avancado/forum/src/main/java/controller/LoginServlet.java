@@ -1,30 +1,28 @@
 package controller;
 
 import model.Autenticador;
+import model.Usuario;
 
-import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
-	
-	private static final long serialVersionUID = 1L;
 
-	private Autenticador autenticador = new Autenticador();
+    private Autenticador autenticador = new Autenticador();
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
-			String nome = autenticador.autentica(request.getParameter("login"), request.getParameter("senha"));
-			request.setAttribute("nome", nome);
-			request.getRequestDispatcher("/WEB-INF/jsp/topicos.jsp").forward(request, response);
-		} catch (Exception e) {
-			request.setAttribute("erro", "Erro na autenticação!");
-			request.getRequestDispatcher("index.jsp").forward(request, response);
-		}
-	}
-
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            Usuario usuario = autenticador.autenticar(request.getParameter("login"), request.getParameter("senha"));
+            request.setAttribute("usuario", usuario);
+            request.getRequestDispatcher("/WEB-INF/jsp/topicos.jsp").forward(request, response);
+        } catch (Exception exception) {
+            request.setAttribute("erro", exception.getMessage());
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
+    }
 }

@@ -1,10 +1,16 @@
 package model;
 
+import dao.UsuarioDAO;
+import dao.UsuarioDAOImpl;
+import exception.DAOException;
+
 public class Autenticador {
 
-    public String autentica(String login, String senha) throws Exception {
-        if (!login.equals("admin"))
-            throw new Exception("erro");
-        return "Admin";
+    public UsuarioDAO dao = new UsuarioDAOImpl();
+
+    public Usuario autenticar(String login, String senha) throws DAOException {
+        Usuario usuario = dao.recuperar(login, senha);
+        if (usuario == null) throw new RuntimeException("Login ou senha inválidos!");
+        return usuario;
     }
 }
