@@ -21,10 +21,6 @@
         <h1>Cadastro</h1>
         <form method="post" action="cadastro">
             <div class="form-group">
-                <label for="nome">Nome</label>
-                <input type="text" class="form-control" id="nome" name="nome">
-            </div>
-            <div class="form-group">
                 <label for="login">Login</label>
                 <input type="text" class="form-control" id="login" name="login">
             </div>
@@ -33,10 +29,14 @@
                 <input type="text" class="form-control" id="email" name="email">
             </div>
             <div class="form-group">
+                <label for="nome">Nome</label>
+                <input type="text" class="form-control" id="nome" name="nome">
+            </div>
+            <div class="form-group">
                 <label for="senha">Senha</label>
                 <input type="password" class="form-control" id="senha" name="senha">
             </div>
-            <button type="submit" class="btn btn-default">Salvar</button>
+            <button type="submit" class="btn btn-default">Cadastrar</button>
         </form>
     </div>
 </body>

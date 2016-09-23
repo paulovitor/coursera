@@ -3,25 +3,18 @@ package dao;
 import exception.DAOException;
 import model.Usuario;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-public class UsuarioDAOImpl implements UsuarioDAO {
-
-    public static final String USUARIO = "postgres";
-    public static final String SENHA = "postgres";
-    public static final String JDBC_POSTGRESQL = "jdbc:postgresql://127.0.0.1:5432/forum";
-
-    static {
-        try {
-            Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
+public class UsuarioDAOImpl extends BaseDAO implements UsuarioDAO {
 
     @Override
     public void inserir(Usuario usuario) throws DAOException {
-        try (Connection connection = DriverManager.getConnection(JDBC_POSTGRESQL, USUARIO, SENHA)) {
+        try (Connection connection = getConnection()) {
 
             String sql = "INSERT INTO usuario(login, email, nome, senha, pontos) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement prepareStatement = connection.prepareStatement(sql);
@@ -39,7 +32,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
     @Override
     public Usuario recuperar(String login, String senha) throws DAOException {
-        try (Connection connection = DriverManager.getConnection(JDBC_POSTGRESQL, USUARIO, SENHA)) {
+        try (Connection connection = getConnection()) {
 
             String sql = "SELECT * FROM usuario WHERE login = ? AND senha = ?";
             PreparedStatement prepareStatement = connection.prepareStatement(sql);
@@ -52,9 +45,30 @@ public class UsuarioDAOImpl implements UsuarioDAO {
             }
 
         } catch (SQLException exception) {
-            throw new DAOException("Erro ao recuperar usuário!", exception);
+            throw new DAOException("Erro ao recuperarTopicos usuário!", exception);
         }
 
         return null;
+    }
+
+    @Override
+    public List<Usuario> recuperarTodos() throws DAOException {
+        List<Usuario> usuarios = new ArrayList<>();
+
+        try (Connection connection = getConnection()) {
+
+            String sql = "SELECT * FROM usuario ORDER BY pontos DESC";
+            PreparedStatement prepareStatement = connection.prepareStatement(sql);
+            ResultSet resultSet = prepareStatement.executeQuery();
+            while (resultSet.next()) {
+                usuarios.add(new Usuario(resultSet.getString("login"), resultSet.getString("email"),
+                        resultSet.getString("nome"), resultSet.getString("senha"), resultSet.getInt("pontos")));
+            }
+
+        } catch (SQLException e) {
+            throw new DAOException("Erro ao recuperarTopicos todos os usuários!", e);
+        }
+
+        return usuarios;
     }
 }

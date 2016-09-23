@@ -24,7 +24,7 @@ public class UsuarioServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            cadastro.inserir(new Usuario(request.getParameter("nome"), request.getParameter("login"), request.getParameter("email"), request.getParameter("senha"), 0));
+            cadastro.inserir(new Usuario(request.getParameter("login"), request.getParameter("email"), request.getParameter("nome"), request.getParameter("senha"), 0));
             request.setAttribute("mensagem", "Cadastro realizado com sucesso!");
         } catch (DAOException e) {
             request.setAttribute("erro", e.getMessage());
