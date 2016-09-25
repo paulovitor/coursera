@@ -11,5 +11,5 @@ public interface UsuarioDAO {
 
     Usuario recuperar(String login, String senha) throws DAOException;
 
-    List<Usuario> recuperarTodos() throws DAOException;
+    List<Usuario> ranking() throws DAOException;
 }

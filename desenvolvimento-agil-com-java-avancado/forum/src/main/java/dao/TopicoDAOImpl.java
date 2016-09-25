@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TopicoDAOImpl extends BaseDAO implements TopicoDAO {
+public class TopicoDAOImpl extends AbstractDAO implements TopicoDAO {
 
     @Override
     public List<Topico> recuperarTopicos(String login) throws DAOException {

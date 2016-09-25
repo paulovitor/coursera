@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsuarioDAOImpl extends BaseDAO implements UsuarioDAO {
+public class UsuarioDAOImpl extends AbstractDAO implements UsuarioDAO {
 
     @Override
     public void inserir(Usuario usuario) throws DAOException {
@@ -49,7 +49,7 @@ public class UsuarioDAOImpl extends BaseDAO implements UsuarioDAO {
     }
 
     @Override
-    public List<Usuario> recuperarTodos() throws DAOException {
+    public List<Usuario> ranking() throws DAOException {
         List<Usuario> usuarios = new ArrayList<>();
 
         try (Connection connection = getConnection()) {

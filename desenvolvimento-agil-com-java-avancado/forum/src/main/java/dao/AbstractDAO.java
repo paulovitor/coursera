@@ -4,11 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public abstract class BaseDAO {
+public abstract class AbstractDAO {
 
-    private static final String USUARIO = "postgres";
-    private static final String SENHA = "postgres";
-    private static final String JDBC_POSTGRESQL = "jdbc:postgresql://127.0.0.1:5432/forum?charSet=UTF-8";
+    public static final String USUARIO = "postgres";
+    public static final String SENHA = "postgres";
+    public static final String JDBC_POSTGRESQL = "jdbc:postgresql://127.0.0.1:5432/forum?charSet=UTF-8";
 
     static {
         try {

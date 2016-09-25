@@ -38,6 +38,27 @@
             <h4>Comentários</h4>
             <hr>
         </div>
+        <div class="form-group">
+            <div>
+                <table class="table table-condensed">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>Comentário</th>
+                        <th>Usuário</th>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${comentarios}" var="comentario" varStatus="contador">
+                        <tr>
+                            <td>${contador.count}</td>
+                            <td>${comentario.comentario}</td>
+                            <td>${comentario.login}</td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </body>
 </html>
