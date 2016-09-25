@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -22,6 +23,14 @@
             <h1>Tópico</h1>
         </div>
 
+        <p align="right"><a href="topico?acao=lista">Voltar para os tópicos</a></p>
+
+        <c:if test="${mensagem != null}">
+            <div class="alert alert-success" role="alert">${mensagem}</div>
+        </c:if>
+        <c:if test="${erro != null}">
+            <div class="alert alert-danger" role="alert">${erro}</div>
+        </c:if>
         <div class="form-group">
             <label for="titulo">Título</label>
             <label class="form-control" id="titulo" name="titulo">${topico.titulo}</label>
@@ -58,6 +67,16 @@
                     </tbody>
                 </table>
             </div>
+        </div>
+        <div class="form-group">
+            <form method="post" action="comentario">
+                <div class="form-group">
+                    <label for="comentario">Comentário</label>
+                    <input type="hidden" name="topicoId" value="${topico.id}"/>
+                    <textarea class="form-control" id="comentario" name="comentario"></textarea>
+                </div>
+                <button type="submit" class="btn btn-default">Adicionar</button>
+            </form>
         </div>
     </div>
 </body>

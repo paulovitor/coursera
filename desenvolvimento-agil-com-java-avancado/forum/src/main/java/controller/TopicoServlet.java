@@ -2,6 +2,7 @@ package controller;
 
 import exception.DAOException;
 import model.Cadastro;
+import model.Comentario;
 import model.Forum;
 import model.Topico;
 
@@ -26,10 +27,24 @@ public class TopicoServlet extends HttpServlet {
         else if (request.getParameter("acao") != null && request.getParameter("acao").equals("exibe")) {
             try {
                 Topico topico = forum.recuperar(Integer.parseInt(request.getParameter("id")));
-
                 request.setAttribute("topico", topico);
+
+                List<Comentario> comentarios = forum.recuperarComentarios(topico.getId());
+                request.setAttribute("comentarios", comentarios);
+
                 request.getRequestDispatcher("/WEB-INF/jsp/exibe-topico.jsp").forward(request, response);
             } catch (Exception exception) {
+                request.setAttribute("erro", exception.getMessage());
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+            }
+        } else if (request.getParameter("acao") != null && request.getParameter("acao").equals("lista")) {
+            try {
+                String login = (String) request.getSession().getAttribute("login");
+                List<Topico> topicos = forum.recuperarTopicos(login);
+                request.setAttribute("topicos", topicos);
+
+                request.getRequestDispatcher("/WEB-INF/jsp/topicos.jsp").forward(request, response);
+            } catch (DAOException exception) {
                 request.setAttribute("erro", exception.getMessage());
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             }

@@ -45,7 +45,7 @@ public class TopicoDAOImpl extends AbstractDAO implements TopicoDAO {
             prepareStatement.executeUpdate();
 
         } catch (SQLException exception) {
-            throw new DAOException("Erro ao inserir usuário!", exception);
+            throw new DAOException("Erro ao inserir tópico!", exception);
         }
     }
 

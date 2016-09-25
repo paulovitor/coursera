@@ -27,11 +27,13 @@ public class TopicoDAOTest extends AbstractDAOTest {
 
     @Test
     public void deveRecuperarTopicos() throws DAOException {
-        List<Topico> topicos = dao.recuperarTopicos("mariazinha");
+        String login = "mariazinha";
+
+        List<Topico> topicos = dao.recuperarTopicos(login);
 
         assertNotNull(topicos);
         assertEquals(1, topicos.size());
-        assertEquals("mariazinha", topicos.get(0).getLogin());
+        assertEquals(login, topicos.get(0).getLogin());
     }
 
     @Test

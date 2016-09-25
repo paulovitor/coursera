@@ -3,9 +3,9 @@ package model;
 public class Topico {
 
     private int id;
-    private String titulo;
-    private String conteudo;
-    private String login;
+    private final String titulo;
+    private final String conteudo;
+    private final String login;
 
     public Topico(int id, String titulo, String conteudo, String login) {
         this.id = id;
