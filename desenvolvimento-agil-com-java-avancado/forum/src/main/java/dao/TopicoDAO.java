@@ -7,5 +7,9 @@ import java.util.List;
 
 public interface TopicoDAO {
 
-    List<Topico> recuperar(String login) throws DAOException;
+    List<Topico> recuperarTopicos(String login) throws DAOException;
+
+    void inserir(Topico topico) throws DAOException;
+
+    Topico recuperar(int id) throws DAOException;
 }

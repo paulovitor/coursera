@@ -11,6 +11,10 @@ public class Forum {
     TopicoDAO dao = new TopicoDAOImpl();
 
     public List<Topico> recuperarTopicos(String usuarioLogin) throws DAOException {
-        return dao.recuperar(usuarioLogin);
+        return dao.recuperarTopicos(usuarioLogin);
+    }
+
+    public Topico recuperar(int id) throws DAOException {
+        return dao.recuperar(id);
     }
 }

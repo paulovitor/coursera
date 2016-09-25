@@ -11,14 +11,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/cadastro")
+@WebServlet("/usuario")
 public class UsuarioServlet extends HttpServlet {
 
-    public Cadastro cadastro = new Cadastro();
+    private Cadastro cadastro = new Cadastro();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/jsp/cadastro.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/jsp/insere-usuario.jsp").forward(request, response);
     }
 
     @Override
@@ -26,8 +26,8 @@ public class UsuarioServlet extends HttpServlet {
         try {
             cadastro.inserir(new Usuario(request.getParameter("login"), request.getParameter("email"), request.getParameter("nome"), request.getParameter("senha"), 0));
             request.setAttribute("mensagem", "Cadastro realizado com sucesso!");
-        } catch (DAOException e) {
-            request.setAttribute("erro", e.getMessage());
+        } catch (DAOException exception) {
+            request.setAttribute("erro", exception.getMessage());
         }
 
         request.getRequestDispatcher("index.jsp").forward(request, response);

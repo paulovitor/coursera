@@ -1,14 +1,21 @@
 package model;
 
+import dao.TopicoDAO;
+import dao.TopicoDAOImpl;
 import dao.UsuarioDAO;
 import dao.UsuarioDAOImpl;
 import exception.DAOException;
 
 public class Cadastro {
 
-    UsuarioDAO dao = new UsuarioDAOImpl();
+    UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+    TopicoDAO topicoDAO = new TopicoDAOImpl();
 
     public void inserir(Usuario usuario) throws DAOException {
-        dao.inserir(usuario);
+        usuarioDAO.inserir(usuario);
+    }
+
+    public void inserir(Topico topico) throws DAOException {
+        topicoDAO.inserir(topico);
     }
 }

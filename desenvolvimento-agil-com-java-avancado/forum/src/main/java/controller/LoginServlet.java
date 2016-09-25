@@ -19,12 +19,16 @@ public class LoginServlet extends HttpServlet {
     private Autenticador autenticador = new Autenticador();
     private Forum forum = new Forum();
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             Usuario usuario = autenticador.autenticar(request.getParameter("login"), request.getParameter("senha"));
             request.setAttribute("nome", usuario.getNome());
 
-            List<Topico> topicos = forum.recuperarTopicos(usuario.getLogin());
+            String login = usuario.getLogin();
+            request.getSession().setAttribute("login", login);
+
+            List<Topico> topicos = forum.recuperarTopicos(login);
             request.setAttribute("topicos", topicos);
 
             request.getRequestDispatcher("/WEB-INF/jsp/topicos.jsp").forward(request, response);

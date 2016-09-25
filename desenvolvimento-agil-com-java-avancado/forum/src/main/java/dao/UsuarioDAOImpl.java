@@ -39,13 +39,10 @@ public class UsuarioDAOImpl extends BaseDAO implements UsuarioDAO {
             prepareStatement.setString(1, login);
             prepareStatement.setString(2, senha);
             ResultSet resultSet = prepareStatement.executeQuery();
-            while (resultSet.next()) {
-                return new Usuario(resultSet.getString("login"), resultSet.getString("email"),
-                        resultSet.getString("nome"), resultSet.getString("senha"), resultSet.getInt("pontos"));
-            }
+            if (resultSet.next()) return criar(resultSet);
 
         } catch (SQLException exception) {
-            throw new DAOException("Erro ao recuperarTopicos usuário!", exception);
+            throw new DAOException("Erro ao recuperar usuário!", exception);
         }
 
         return null;
@@ -61,14 +58,18 @@ public class UsuarioDAOImpl extends BaseDAO implements UsuarioDAO {
             PreparedStatement prepareStatement = connection.prepareStatement(sql);
             ResultSet resultSet = prepareStatement.executeQuery();
             while (resultSet.next()) {
-                usuarios.add(new Usuario(resultSet.getString("login"), resultSet.getString("email"),
-                        resultSet.getString("nome"), resultSet.getString("senha"), resultSet.getInt("pontos")));
+                usuarios.add(criar(resultSet));
             }
 
         } catch (SQLException e) {
-            throw new DAOException("Erro ao recuperarTopicos todos os usuários!", e);
+            throw new DAOException("Erro ao recuperar todos os usuários!", e);
         }
 
         return usuarios;
+    }
+
+    private Usuario criar(ResultSet resultSet) throws SQLException {
+        return new Usuario(resultSet.getString("login"), resultSet.getString("email"),
+                resultSet.getString("nome"), resultSet.getString("senha"), resultSet.getInt("pontos"));
     }
 }
