@@ -1,4 +1,4 @@
-package functional;
+package functional.page;
 
 import model.Comentario;
 import model.Topico;

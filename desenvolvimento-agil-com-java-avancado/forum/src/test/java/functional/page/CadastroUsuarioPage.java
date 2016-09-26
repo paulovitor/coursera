@@ -1,4 +1,4 @@
-package functional;
+package functional.page;
 
 import model.Usuario;
 import org.openqa.selenium.By;

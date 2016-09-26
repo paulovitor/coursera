@@ -1,4 +1,4 @@
-package functional;
+package functional.page;
 
 import model.Topico;
 import org.openqa.selenium.By;
