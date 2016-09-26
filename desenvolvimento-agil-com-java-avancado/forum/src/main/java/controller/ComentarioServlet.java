@@ -21,6 +21,7 @@ public class ComentarioServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+            request.setCharacterEncoding("UTF-8");
             String login = (String) request.getSession().getAttribute("login");
             int topicoId = Integer.parseInt(request.getParameter("topicoId"));
             cadastro.inserir(new Comentario(request.getParameter("comentario"), login, topicoId));

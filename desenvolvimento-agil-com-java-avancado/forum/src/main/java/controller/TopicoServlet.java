@@ -55,6 +55,7 @@ public class TopicoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+            request.setCharacterEncoding("UTF-8");
             String login = (String) request.getSession().getAttribute("login");
             cadastro.inserir(new Topico(request.getParameter("titulo"), request.getParameter("conteudo"), login));
 
