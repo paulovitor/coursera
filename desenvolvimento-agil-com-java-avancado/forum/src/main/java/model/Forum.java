@@ -1,17 +1,15 @@
 package model;
 
-import dao.ComentarioDAO;
-import dao.ComentarioDAOImpl;
-import dao.TopicoDAO;
-import dao.TopicoDAOImpl;
+import dao.*;
 import exception.DAOException;
 
 import java.util.List;
 
 public class Forum {
 
-    private TopicoDAO topicoDAO = new TopicoDAOImpl();
     private ComentarioDAO comentarioDAO = new ComentarioDAOImpl();
+    private TopicoDAO topicoDAO = new TopicoDAOImpl();
+    private UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
 
     public List<Topico> recuperarTopicos(String usuarioLogin) throws DAOException {
         return topicoDAO.recuperarTopicos(usuarioLogin);
@@ -23,5 +21,9 @@ public class Forum {
 
     public List<Comentario> recuperarComentarios(int topicoId) throws DAOException {
         return comentarioDAO.recuperarComentarios(topicoId);
+    }
+
+    public List<Usuario> ranking() throws DAOException {
+        return usuarioDAO.ranking();
     }
 }

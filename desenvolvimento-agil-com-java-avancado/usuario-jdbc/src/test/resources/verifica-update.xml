@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<dataset>
-	<usuario login="jesus" email="jesus@coursera.org" nome="Jesus" senha="jesus" pontos="10"/>
-	<usuario login="mariazinha" email="maria@coursera.org" nome="Maria" senha="marie" pontos="40"/>
-</dataset>

@@ -15,9 +15,11 @@ public class Cadastro {
 
     public void inserir(Topico topico) throws DAOException {
         topicoDAO.inserir(topico);
+        usuarioDAO.adicionarPontos(topico.getLogin(), 10);
     }
 
     public void inserir(Comentario comentario) throws DAOException {
         comentarioDAO.inserir(comentario);
+        usuarioDAO.adicionarPontos(comentario.getLogin(), 3);
     }
 }
