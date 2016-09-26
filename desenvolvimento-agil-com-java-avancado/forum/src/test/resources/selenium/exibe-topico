@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/" />
+<title>exibe-topico</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">exibe-topico</td></tr>
+</thead><tbody>
+<tr>
+	<td>verifyText</td>
+	<td>link=Exibe tópico</td>
+	<td>Exibe tópico</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Exibe tópico</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Voltar para os tópicos</td>
+	<td>Voltar para os tópicos</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=titulo</td>
+	<td>Futebol</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=login</td>
+	<td>ze</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>id=conteudo</td>
+	<td>Palmeiras lider do brasileirao</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=comentario</td>
+	<td>Melhor ataque do campeonato</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=button.btn.btn-default</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.alert.alert-success</td>
+	<td>Comentário adicionado com sucesso!</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//td[2]</td>
+	<td>Melhor ataque do campeonato</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//td[3]</td>
+	<td>ze</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Voltar para os tópicos</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>
