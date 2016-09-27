@@ -4,7 +4,15 @@
 bin/
 **/.settings/
 build/
+
+# Maven #
 target/
+
+# Intellij #
 .idea/
 **.iml
+
+# Jrebel #
 rebel.xml
+rebel-remote.xml
+jrebel.jar

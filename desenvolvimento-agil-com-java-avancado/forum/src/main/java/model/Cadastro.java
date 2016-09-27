@@ -5,9 +5,21 @@ import exception.DAOException;
 
 public class Cadastro {
 
+    private static Cadastro instance;
+
     private ComentarioDAO comentarioDAO = new ComentarioDAOImpl();
     private TopicoDAO topicoDAO = new TopicoDAOImpl();
     private UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+
+    private Cadastro() {
+
+    }
+
+    public static Cadastro get() {
+        if (instance == null)
+            instance = new Cadastro();
+        return instance;
+    }
 
     public void inserir(Usuario usuario) throws DAOException {
         usuarioDAO.inserir(usuario);

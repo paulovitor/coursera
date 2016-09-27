@@ -1,4 +1,4 @@
-package controller;
+package servlet;
 
 import model.Cadastro;
 import model.Comentario;
@@ -15,20 +15,19 @@ import java.util.List;
 @WebServlet("/comentario")
 public class ComentarioServlet extends HttpServlet {
 
-    private Cadastro cadastro = new Cadastro();
-    private Forum forum = new Forum();
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         try {
-            request.setCharacterEncoding("UTF-8");
             String login = (String) request.getSession().getAttribute("login");
             int topicoId = Integer.parseInt(request.getParameter("topicoId"));
-            cadastro.inserir(new Comentario(request.getParameter("comentario"), login, topicoId));
+
+            Cadastro.get().inserir(new Comentario(request.getParameter("comentario"), login, topicoId));
             request.setAttribute("mensagem", "Comentário adicionado com sucesso!");
 
-            List<Comentario> comentarios = forum.recuperarComentarios(topicoId);
+            List<Comentario> comentarios = Forum.get().recuperarComentarios(topicoId);
             request.setAttribute("comentarios", comentarios);
+
         } catch (Exception exception) {
             request.setAttribute("erro", exception.getMessage());
         }

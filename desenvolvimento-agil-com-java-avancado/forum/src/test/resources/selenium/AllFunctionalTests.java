@@ -1,4 +1,4 @@
-package functional;
+package selenium;
 
 import org.junit.After;
 import org.junit.Before;

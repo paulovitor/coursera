@@ -7,9 +7,21 @@ import java.util.List;
 
 public class Forum {
 
+    private static Forum instance;
+
     private ComentarioDAO comentarioDAO = new ComentarioDAOImpl();
     private TopicoDAO topicoDAO = new TopicoDAOImpl();
     private UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+
+    private Forum() {
+
+    }
+
+    public static Forum get() {
+        if (instance == null)
+            instance = new Forum();
+        return instance;
+    }
 
     public List<Topico> recuperarTopicos(String usuarioLogin) throws DAOException {
         return topicoDAO.recuperarTopicos(usuarioLogin);
