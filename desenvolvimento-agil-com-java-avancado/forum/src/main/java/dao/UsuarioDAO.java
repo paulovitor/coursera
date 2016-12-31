@@ -11,5 +11,7 @@ public interface UsuarioDAO {
 
     Usuario recuperar(String login, String senha) throws DAOException;
 
+    void adicionarPontos(String login, int pontos);
+
     List<Usuario> ranking() throws DAOException;
 }

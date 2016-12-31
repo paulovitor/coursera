@@ -26,7 +26,7 @@
 
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#">Ranking</a></li>
+				<li><a href="usuario?acao=ranking">Ranking</a></li>
 				<li><a href="topico?acao=insere">Insere Tópico</a></li>
 				<li><a href="logoff">Logoff</a></li>
 			</ul>

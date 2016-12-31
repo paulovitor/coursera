@@ -2,7 +2,6 @@ package dao;
 
 import exception.DAOException;
 import model.Usuario;
-import org.dbunit.operation.DatabaseOperation;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -43,6 +42,18 @@ public class UsuarioDAOTest extends AbstractDAOTest {
 
         assertNotNull(usuario);
         assertEquals(login, usuario.getLogin());
+    }
+
+    @Test
+    public void deveAdicionarPontosParaUsuario() throws Exception {
+        super.tearDown("/usuario.xml", "/topico.xml");
+        super.setUp("/usuario.xml");
+
+        String login = "mariazinha";
+
+        dao.adicionarPontos(login, 20);
+
+        assertTable("/verifica-update-usuario.xml", "usuario");
     }
 
     @Test

@@ -48,6 +48,20 @@ public class UsuarioDAOImpl extends AbstractDAO implements UsuarioDAO {
         return null;
     }
 
+    public void adicionarPontos(String login, int pontos) {
+        try (Connection connection = getConnection()) {
+
+            String sql = "UPDATE usuario SET pontos = pontos + ? WHERE login = ?";
+            PreparedStatement prepareStatement = connection.prepareStatement(sql);
+            prepareStatement.setInt(1, pontos);
+            prepareStatement.setString(2, login);
+            prepareStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Não foi possível executar o comando", e);
+        }
+    }
+
     @Override
     public List<Usuario> ranking() throws DAOException {
         List<Usuario> usuarios = new ArrayList<>();

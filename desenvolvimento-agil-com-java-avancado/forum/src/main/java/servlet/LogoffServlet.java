@@ -1,4 +1,4 @@
-package controller;
+package servlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +13,6 @@ public class LogoffServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getSession().removeAttribute("login");
-
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 }

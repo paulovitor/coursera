@@ -36,7 +36,7 @@
 			    <input type="password" class="form-control" id="senha" name="senha">
 		  	</div>
 			<button type="submit" class="btn btn-default">Login</button>
-			<p align="right"><a href="usuario">Ir para tela de cadastro</a></p>
+			<p align="right"><a href="usuario?acao=insere">Ir para tela de cadastro</a></p>
 		</form>
 	</div>
 </body>
