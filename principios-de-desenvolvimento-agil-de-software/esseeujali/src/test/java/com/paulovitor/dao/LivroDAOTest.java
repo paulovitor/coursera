@@ -1,0 +1,35 @@
+package com.paulovitor.dao;
+
+import com.paulovitor.domain.Livro;
+import com.paulovitor.exception.DAOException;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
+public class LivroDAOTest extends AbstractDAOTest {
+
+    private LivroDAO dao = new LivroDAOImpl();
+
+    @Before
+    public void setUp() throws Exception {
+        super.setUp("/livro.xml");
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        super.tearDown("/livro.xml");
+    }
+
+    @Test
+    public void deveBuscarTodosOsLivros() throws DAOException {
+        List<Livro> livros = dao.recuperarTodos();
+
+        assertNotNull(livros);
+        assertEquals(4, livros.size());
+    }
+}
