@@ -8,7 +8,7 @@ public abstract class AbstractDAO {
 
     public static final String USUARIO = "postgres";
     public static final String SENHA = "postgres";
-    public static final String JDBC_POSTGRESQL = "jdbc:postgresql://127.0.0.1:5432/esseeujali?charSet=UTF-8";
+    public static final String JDBC_POSTGRESQL = "jdbc:postgresql://localhost:5432/esseeujali?charSet=UTF-8";
 
     static {
         try {
