@@ -25,4 +25,8 @@ public class Biblioteca {
     public List<Livro> recuperarLivros() throws DAOException {
         return livroDAO.recuperarTodos();
     }
+
+    public Livro recuperarLivro(int id) throws DAOException {
+        return livroDAO.recuperar(id);
+    }
 }

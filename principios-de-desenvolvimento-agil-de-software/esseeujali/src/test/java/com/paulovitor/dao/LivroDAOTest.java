@@ -26,10 +26,20 @@ public class LivroDAOTest extends AbstractDAOTest {
     }
 
     @Test
-    public void deveBuscarTodosOsLivros() throws DAOException {
+    public void deveRecuperarTodosOsLivros() throws DAOException {
         List<Livro> livros = dao.recuperarTodos();
 
         assertNotNull(livros);
         assertEquals(4, livros.size());
+    }
+
+    @Test
+    public void deveRecuperarLivro() throws DAOException {
+        int id = 1;
+
+        Livro livro = dao.recuperar(id);
+
+        assertNotNull(livro);
+        assertEquals(id, livro.getId());
     }
 }

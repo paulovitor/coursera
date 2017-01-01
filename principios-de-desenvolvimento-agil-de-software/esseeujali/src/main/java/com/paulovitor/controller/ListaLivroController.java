@@ -11,7 +11,8 @@ public class ListaLivroController implements Controller {
 
     @Override
     public void executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//        String login = (String) request.getSession().getAttribute("login");
+        String login = (String) request.getSession().getAttribute("login");
+        request.setAttribute("login", login);
 
         List<Livro> livros = Biblioteca.get().recuperarLivros();
         request.setAttribute("livros", livros);

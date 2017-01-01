@@ -8,4 +8,6 @@ import java.util.List;
 public interface LivroDAO {
 
     List<Livro> recuperarTodos() throws DAOException;
+
+    Livro recuperar(int id) throws DAOException;
 }

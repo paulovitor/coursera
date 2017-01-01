@@ -32,6 +32,23 @@ public class LivroDAOImpl extends AbstractDAO implements LivroDAO {
         return livros;
     }
 
+    @Override
+    public Livro recuperar(int id) throws DAOException {
+        try (Connection connection = getConnection()) {
+
+            String sql = "SELECT * FROM livro WHERE id = ?";
+            PreparedStatement prepareStatement = connection.prepareStatement(sql);
+            prepareStatement.setInt(1, id);
+            ResultSet resultSet = prepareStatement.executeQuery();
+            if (resultSet.next()) return criar(resultSet);
+
+        } catch (SQLException exception) {
+            throw new DAOException("Erro ao recuperar livro!", exception);
+        }
+
+        return null;
+    }
+
     private Livro criar(ResultSet resultSet) throws SQLException {
         return new Livro(resultSet.getInt("id"), resultSet.getString("titulo"),
                 resultSet.getString("autor"), resultSet.getString("estilo"),

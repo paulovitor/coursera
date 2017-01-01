@@ -21,7 +21,7 @@
 	<div class="container">
 		<div class="page-header">
 			<h1>Livros</h1>
-			<p class="lead">Bem vindo ${nome}</p>
+			<p class="lead">Bem vindo ${login}</p>
 		</div>
 
 		<div id="navbar" class="navbar-collapse collapse">
@@ -44,6 +44,7 @@
 								<th>Autor</th>
 								<th>Estilo</th>
 								<th>Páginas</th>
+								<th></th>
 							</thead>
 							<tbody>
 							<c:forEach items="${livros}" var="livro" varStatus="contador">
@@ -53,6 +54,7 @@
 									<td>${livro.autor}</td>
 									<td>${livro.estilo}</td>
 									<td>${livro.paginas}</td>
+									<td><a href="livro?acao=visualiza&id=${livro.id}">Visualizar</a></td>
 								</tr>
 							</c:forEach>
 							</tbody>
