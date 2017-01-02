@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-	<livro titulo="Design Patterns com Java - Projeto orientado a objetos guiado por padrões" autor="Eduardo Guerra" estilo="Tecnologia" paginas="334"/>
-	<livro titulo="Test-Driven Development - Teste e Design no Mundo Real" autor="Mauricio Aniche" estilo="Tecnologia" paginas="194"/>
-	<livro titulo="Como Se Dar Bem com Quem Você Quer Bem" autor="Márcio Mendes" estilo="Religião" paginas="312"/>
-	<livro titulo="Novena de Natal 2016" autor="Canção Nova" estilo="Religião" paginas="48"/>
+	<livro id="1" titulo="Design Patterns com Java - Projeto orientado a objetos guiado por padrões" autor="Eduardo Guerra" estilo="Tecnologia" paginas="334"/>
+	<livro id="2" titulo="Test-Driven Development - Teste e Design no Mundo Real" autor="Mauricio Aniche" estilo="Tecnologia" paginas="194"/>
+	<livro id="3" titulo="Como Se Dar Bem com Quem Você Quer Bem" autor="Márcio Mendes" estilo="Religião" paginas="312"/>
+	<livro id="4" titulo="Novena de Natal 2016" autor="Canção Nova" estilo="Religião" paginas="48"/>
 </dataset>

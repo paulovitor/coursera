@@ -32,3 +32,16 @@ INSERT INTO livro (titulo, autor, estilo, paginas) VALUES ('Design Patterns com 
 INSERT INTO livro (titulo, autor, estilo, paginas) VALUES ('Test-Driven Development - Teste e Design no Mundo Real', 'Mauricio Aniche', 'Tecnologia', 194);
 INSERT INTO livro (titulo, autor, estilo, paginas) VALUES ('Como Se Dar Bem com Quem Você Quer Bem', 'Márcio Mendes', 'Religião', 312);
 INSERT INTO livro (titulo, autor, estilo, paginas) VALUES ('Novena de Natal 2016', 'Canção Nova', 'Religião', 48);
+
+CREATE TABLE usuario_leu_livros
+(
+  login text NOT NULL,
+  id_livro int NOT NULL,
+  CONSTRAINT usuario_leu_livros_pkey PRIMARY KEY (login, id_livro),
+  CONSTRAINT usuario_leu_livros_id_livro_fkey FOREIGN KEY (id_livro)
+    REFERENCES livro (id) MATCH SIMPLE
+    ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT usuario_leu_livros_login_fkey FOREIGN KEY (login)
+    REFERENCES usuario (login) MATCH SIMPLE
+    ON UPDATE NO ACTION ON DELETE NO ACTION
+);

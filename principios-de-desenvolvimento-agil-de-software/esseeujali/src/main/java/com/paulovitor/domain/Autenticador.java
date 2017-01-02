@@ -8,7 +8,7 @@ public class Autenticador {
 
     private static Autenticador instance;
 
-    public UsuarioDAO dao = new UsuarioDAOImpl();
+    public UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
 
     private Autenticador() {
 
@@ -21,7 +21,7 @@ public class Autenticador {
     }
 
     public Usuario autenticar(String login, String senha) throws DAOException {
-        Usuario usuario = dao.recuperar(login, senha);
+        Usuario usuario = usuarioDAO.recuperar(login, senha);
         if (usuario == null) throw new RuntimeException("Login ou senha inválidos!");
         return usuario;
     }

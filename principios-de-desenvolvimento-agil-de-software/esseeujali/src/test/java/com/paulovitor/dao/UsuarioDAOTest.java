@@ -6,8 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public class UsuarioDAOTest extends AbstractDAOTest {
 
@@ -15,12 +14,12 @@ public class UsuarioDAOTest extends AbstractDAOTest {
 
     @Before
     public void setUp() throws Exception {
-        super.setUp("/usuario.xml");
+        super.setUp("/usuario.xml", "/livro.xml", "/usuario_leu_livros.xml");
     }
 
     @After
     public void tearDown() throws Exception {
-        super.tearDown("/usuario.xml");
+        super.tearDown("/usuario.xml", "/livro.xml", "/usuario_leu_livros.xml");
     }
 
     @Test
@@ -31,5 +30,10 @@ public class UsuarioDAOTest extends AbstractDAOTest {
 
         assertNotNull(usuario);
         assertEquals(login, usuario.getLogin());
+    }
+
+    @Test
+    public void deveVerificarSeUsuarioJaLeuLivro() throws DAOException {
+        assertTrue(dao.usuarioJaLeuLivro("mariazinha", 1));
     }
 }

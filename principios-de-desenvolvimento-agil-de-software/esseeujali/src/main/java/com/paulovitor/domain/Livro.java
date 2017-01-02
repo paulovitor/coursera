@@ -2,11 +2,11 @@ package com.paulovitor.domain;
 
 public class Livro {
 
-    private int id;
-    private String titulo;
-    private String autor;
-    private String estilo;
-    private int paginas;
+    private final int id;
+    private final String titulo;
+    private final String autor;
+    private final String estilo;
+    private final int paginas;
 
     public Livro(int id, String titulo, String autor, String estilo, int paginas) {
         this.id = id;

@@ -41,6 +41,9 @@
             <label for="paginas">Páginas</label>
             <label class="form-control" id="paginas" name="paginas">${livro.paginas}</label>
         </div>
+        <div class="form-group">
+            <a href="#">${jaLeuLivro ? 'Desmarcar' : 'Marcar como lido'}</a>
+        </div>
     </div>
 </body>
 </html>
