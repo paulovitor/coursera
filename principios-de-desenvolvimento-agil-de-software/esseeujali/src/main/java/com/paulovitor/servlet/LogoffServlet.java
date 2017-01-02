@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/logoff")
+@WebServlet(name = "LogoffServlet", value = "/logoff")
 public class LogoffServlet extends HttpServlet {
 
     @Override

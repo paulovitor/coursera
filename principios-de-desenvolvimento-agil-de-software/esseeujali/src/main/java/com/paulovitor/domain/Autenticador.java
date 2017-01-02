@@ -8,7 +8,7 @@ public class Autenticador {
 
     private static Autenticador instance;
 
-    public UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+    private UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
 
     private Autenticador() {
 

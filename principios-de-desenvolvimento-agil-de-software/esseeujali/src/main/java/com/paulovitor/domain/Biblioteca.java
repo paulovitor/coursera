@@ -13,7 +13,7 @@ public class Biblioteca {
     private static Biblioteca instance;
 
     private LivroDAO livroDAO = new LivroDAOImpl();
-    public UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+    private UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
 
     private Biblioteca() {
 

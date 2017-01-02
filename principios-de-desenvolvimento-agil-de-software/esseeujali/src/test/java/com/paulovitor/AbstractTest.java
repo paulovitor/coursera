@@ -1,5 +1,6 @@
-package com.paulovitor.dao;
+package com.paulovitor;
 
+import com.paulovitor.dao.AbstractDAO;
 import org.dbunit.Assertion;
 import org.dbunit.IDatabaseTester;
 import org.dbunit.JdbcDatabaseTester;
@@ -9,7 +10,7 @@ import org.dbunit.dataset.ITable;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
 
-public class AbstractDAOTest {
+public class AbstractTest {
 
     private IDatabaseTester databaseTester;
 
@@ -35,16 +36,6 @@ public class AbstractDAOTest {
         ITable expectedTable = expectedDataSet.getTable(tabela);
 
         Assertion.assertEquals(expectedTable, currentTable);
-    }
-
-    protected void assertTable(String file, String tabela, String[] ignoreCols) throws Exception {
-        IDataSet currentDataSet = databaseTester.getConnection().createDataSet();
-        ITable currentTable = currentDataSet.getTable(tabela);
-
-        IDataSet expectedDataSet = getDataSet(file);
-        ITable expectedTable = expectedDataSet.getTable(tabela);
-
-        Assertion.assertEqualsIgnoreCols(expectedTable, currentTable, ignoreCols);
     }
 
     private IDataSet getDataSet(String file) throws DataSetException {

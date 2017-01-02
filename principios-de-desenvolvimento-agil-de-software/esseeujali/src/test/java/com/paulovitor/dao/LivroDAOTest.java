@@ -1,5 +1,6 @@
 package com.paulovitor.dao;
 
+import com.paulovitor.AbstractTest;
 import com.paulovitor.domain.Livro;
 import com.paulovitor.exception.DAOException;
 import org.junit.After;
@@ -11,7 +12,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-public class LivroDAOTest extends AbstractDAOTest {
+public class LivroDAOTest extends AbstractTest {
 
     private LivroDAO dao = new LivroDAOImpl();
 

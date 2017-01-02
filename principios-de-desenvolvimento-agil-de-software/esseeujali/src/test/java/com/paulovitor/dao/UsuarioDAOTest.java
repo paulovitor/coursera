@@ -1,5 +1,6 @@
 package com.paulovitor.dao;
 
+import com.paulovitor.AbstractTest;
 import com.paulovitor.domain.Usuario;
 import com.paulovitor.exception.DAOException;
 import org.junit.After;
@@ -8,7 +9,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class UsuarioDAOTest extends AbstractDAOTest {
+public class UsuarioDAOTest extends AbstractTest {
 
     private UsuarioDAO dao = new UsuarioDAOImpl();
 

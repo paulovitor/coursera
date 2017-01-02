@@ -42,7 +42,12 @@
             <label class="form-control" id="paginas" name="paginas">${livro.paginas}</label>
         </div>
         <div class="form-group">
-            <a href="#">${jaLeuLivro ? 'Desmarcar' : 'Marcar como lido'}</a>
+            <c:if test="${jaLeuLivro}">
+                <a href="livro?acao=desmarca&id=${livro.id}">Desmarcar</a>
+            </c:if>
+            <c:if test="${!jaLeuLivro}">
+                <a href="livro?acao=marca&id=${livro.id}">Marcar como lido</a>
+            </c:if>
         </div>
     </div>
 </body>
