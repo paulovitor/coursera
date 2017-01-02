@@ -9,7 +9,8 @@ CREATE TABLE usuario
 );
 
 INSERT INTO usuario (login, email, nome, senha, pontos) VALUES ('jesus', 'jesus@coursera.org', 'Jesus', 'jesus', 0);
-INSERT INTO usuario (login, email, nome, senha, pontos) VALUES ('mariazinha', 'maria@coursera.org', 'Maria', 'maria', 0);
+INSERT INTO usuario (login, email, nome, senha, pontos) VALUES ('maria', 'maria@coursera.org', 'Maria', 'maria', 0);
+INSERT INTO usuario (login, email, nome, senha, pontos) VALUES ('jose', 'jose@coursera.org', 'José', 'jose', 0);
     
 CREATE SEQUENCE livro_id_livro_seq
   INCREMENT 1

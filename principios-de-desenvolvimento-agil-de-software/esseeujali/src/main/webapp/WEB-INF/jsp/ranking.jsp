@@ -20,7 +20,7 @@
 <body>
 	<div class="container">
 		<div class="page-header">
-			<h1>Livros</h1>
+			<h1>Ranking</h1>
 			<p class="lead">Bem vindo ${login}</p>
 		</div>
 
@@ -41,21 +41,19 @@
 							<thead>
 							<tr>
 								<th></th>
-								<th>Título</th>
-								<th>Autor</th>
-								<th>Estilo</th>
-								<th>Páginas</th>
-								<th></th>
+								<th>Login</th>
+								<th>Email</th>
+								<th>Nome</th>
+								<th>Pontos</th>
 							</thead>
 							<tbody>
-							<c:forEach items="${livros}" var="livro" varStatus="contador">
+							<c:forEach items="${usuarios}" var="usuario" varStatus="contador">
 								<tr>
 									<td>${contador.count}</td>
-									<td>${livro.titulo}</td>
-									<td>${livro.autor}</td>
-									<td>${livro.estilo}</td>
-									<td>${livro.paginas}</td>
-									<td><a href="livro?acao=visualiza&id=${livro.id}">Visualizar</a></td>
+									<td>${usuario.login}</td>
+									<td>${usuario.email}</td>
+									<td>${usuario.nome}</td>
+									<td>${usuario.pontos}</td>
 								</tr>
 							</c:forEach>
 							</tbody>
