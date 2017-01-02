@@ -24,7 +24,7 @@ public class GamificacaoTest extends AbstractTest {
     @Test
     public void deveMarcarLivroComoLidoPorUsuario() throws Exception {
         Livro livro = livroDAO.recuperar(2);
-        Gamificacao.get().marcarLivroComoLidoPorUsuario(livro, "mariazinha");
+        Gamificacao.get().marcarLivroComoLidoPorUsuario(livro, "maria");
 
         assertTable("/verifica-marcacao-usuario_leu_livros.xml", "usuario_leu_livros");
         assertTable("/verifica-marcacao-usuario.xml", "usuario");
@@ -33,7 +33,7 @@ public class GamificacaoTest extends AbstractTest {
     @Test
     public void deveDesmarcarLivroComoLidoPorUsuario() throws Exception {
         Livro livro = livroDAO.recuperar(1);
-        Gamificacao.get().desmarcarLivroComoLidoPorUsuario(livro, "mariazinha");
+        Gamificacao.get().desmarcarLivroComoLidoPorUsuario(livro, "maria");
 
         assertTable("/verifica-desmarcacao-usuario_leu_livros.xml", "usuario_leu_livros");
         assertTable("/verifica-desmarcacao-usuario.xml", "usuario");

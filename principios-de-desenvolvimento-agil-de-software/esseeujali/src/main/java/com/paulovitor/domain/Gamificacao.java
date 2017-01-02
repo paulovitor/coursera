@@ -4,6 +4,8 @@ import com.paulovitor.dao.UsuarioDAO;
 import com.paulovitor.dao.UsuarioDAOImpl;
 import com.paulovitor.exception.DAOException;
 
+import java.util.List;
+
 public class Gamificacao {
 
     private static Gamificacao instance;
@@ -28,5 +30,9 @@ public class Gamificacao {
     public void desmarcarLivroComoLidoPorUsuario(Livro livro, String login) throws DAOException {
         usuarioDAO.desmarcarLivroComoLido(livro.getId(), login);
         usuarioDAO.desmarcarPontos(livro.getPaginas() / 100, login);
+    }
+
+    public List<Usuario> ranking() throws DAOException {
+        return usuarioDAO.ranking();
     }
 }

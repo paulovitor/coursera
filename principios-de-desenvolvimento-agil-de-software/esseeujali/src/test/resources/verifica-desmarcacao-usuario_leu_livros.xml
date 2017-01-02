@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
     <usuario_leu_livros login="jesus" id_livro="1"/>
+    <usuario_leu_livros login="jose" id_livro="3"/>
+    <usuario_leu_livros login="jose" id_livro="4"/>
 </dataset>

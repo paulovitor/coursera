@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UsuarioDAOImpl extends AbstractDAO implements UsuarioDAO {
 
@@ -104,6 +106,26 @@ public class UsuarioDAOImpl extends AbstractDAO implements UsuarioDAO {
         } catch (SQLException exception) {
             throw new DAOException("Erro ao desmarcar pontos para usuário!", exception);
         }
+    }
+
+    @Override
+    public List<Usuario> ranking() throws DAOException {
+        List<Usuario> usuarios = new ArrayList<>();
+
+        try (Connection connection = getConnection()) {
+
+            String sql = "SELECT * FROM usuario ORDER BY pontos DESC LIMIT 10";
+            PreparedStatement prepareStatement = connection.prepareStatement(sql);
+            ResultSet resultSet = prepareStatement.executeQuery();
+            while (resultSet.next()) {
+                usuarios.add(criar(resultSet));
+            }
+
+        } catch (SQLException exception) {
+            throw new DAOException("Erro ao recuperar usuarios!", exception);
+        }
+
+        return usuarios;
     }
 
     private Usuario criar(ResultSet resultSet) throws SQLException {

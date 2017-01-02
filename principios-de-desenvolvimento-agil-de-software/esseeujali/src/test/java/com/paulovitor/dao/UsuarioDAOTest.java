@@ -7,6 +7,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class UsuarioDAOTest extends AbstractTest {
@@ -25,9 +27,9 @@ public class UsuarioDAOTest extends AbstractTest {
 
     @Test
     public void deveRecuperarUsuarioPorLogin() throws DAOException {
-        String login = "mariazinha";
+        String login = "maria";
 
-        Usuario usuario = dao.recuperar(login, "marie");
+        Usuario usuario = dao.recuperar(login, "maria");
 
         assertNotNull(usuario);
         assertEquals(login, usuario.getLogin());
@@ -35,6 +37,15 @@ public class UsuarioDAOTest extends AbstractTest {
 
     @Test
     public void deveVerificarSeUsuarioJaLeuLivro() throws DAOException {
-        assertTrue(dao.usuarioJaLeuLivro("mariazinha", 1));
+        assertTrue(dao.usuarioJaLeuLivro("maria", 1));
+    }
+
+    @Test
+    public void deveRecuperarUsuariosComMaiorPontuacao() throws DAOException {
+        List<Usuario> ranking = dao.ranking();
+
+        assertNotNull(ranking);
+        assertTrue(ranking.size() <= 10);
+        assertEquals("jose", ranking.get(0).getLogin());
     }
 }
