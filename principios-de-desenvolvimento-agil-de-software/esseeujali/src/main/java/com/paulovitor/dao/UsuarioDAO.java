@@ -20,4 +20,12 @@ public interface UsuarioDAO {
     void desmarcarPontos(int pontos, String login) throws DAOException;
 
     List<Usuario> ranking() throws DAOException;
+
+    int contarLivrosLidoDeUmEstilo(String login, String estilo) throws DAOException;
+
+    void adicionarTrofeu(String login, String estilo) throws DAOException;
+
+    boolean temTrofeu(String login, String estilo) throws DAOException;
+
+    void removerTrofeu(String login, String estilo) throws DAOException;
 }

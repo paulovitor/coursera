@@ -31,7 +31,7 @@ public class LivroDAOTest extends AbstractTest {
         List<Livro> livros = dao.recuperarTodos();
 
         assertNotNull(livros);
-        assertEquals(4, livros.size());
+        assertEquals(10, livros.size());
     }
 
     @Test

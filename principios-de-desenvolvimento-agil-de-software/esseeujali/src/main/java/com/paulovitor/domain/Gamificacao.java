@@ -24,12 +24,24 @@ public class Gamificacao {
 
     public void marcarLivroComoLidoPorUsuario(Livro livro, String login) throws DAOException {
         usuarioDAO.marcarLivroComoLido(livro.getId(), login);
-        usuarioDAO.marcarPontos(livro.getPaginas() / 100, login);
+        usuarioDAO.marcarPontos(1 + livro.getPaginas() / 100, login);
+
+        String estilo = livro.getEstilo();
+        int quantidade = usuarioDAO.contarLivrosLidoDeUmEstilo(login, estilo);
+        if (quantidade >= 5 && !usuarioDAO.temTrofeu(login, estilo)) {
+            usuarioDAO.adicionarTrofeu(login, estilo);
+        }
     }
 
     public void desmarcarLivroComoLidoPorUsuario(Livro livro, String login) throws DAOException {
         usuarioDAO.desmarcarLivroComoLido(livro.getId(), login);
-        usuarioDAO.desmarcarPontos(livro.getPaginas() / 100, login);
+        usuarioDAO.desmarcarPontos(1 + livro.getPaginas() / 100, login);
+
+        String estilo = livro.getEstilo();
+        int quantidade = usuarioDAO.contarLivrosLidoDeUmEstilo(login, estilo);
+        if (quantidade < 5 && usuarioDAO.temTrofeu(login, estilo)) {
+            usuarioDAO.removerTrofeu(login, estilo);
+        }
     }
 
     public List<Usuario> ranking() throws DAOException {

@@ -128,6 +128,72 @@ public class UsuarioDAOImpl extends AbstractDAO implements UsuarioDAO {
         return usuarios;
     }
 
+    @Override
+    public int contarLivrosLidoDeUmEstilo(String login, String estilo) throws DAOException {
+        try (Connection connection = getConnection()) {
+
+            String sql = "SELECT COUNT(*) FROM usuario_leu_livros INNER JOIN livro ON id_livro = id WHERE login = ? AND estilo = ?";
+            PreparedStatement prepareStatement = connection.prepareStatement(sql);
+            prepareStatement.setString(1, login);
+            prepareStatement.setString(2, estilo);
+            ResultSet resultSet = prepareStatement.executeQuery();
+            if (resultSet.next()) return resultSet.getInt(1);
+
+        } catch (SQLException exception) {
+            throw new DAOException("Erro ao contar quantidade de livros que usuário leu!", exception);
+        }
+
+        return 0;
+    }
+
+    @Override
+    public void adicionarTrofeu(String login, String estilo) throws DAOException {
+        try (Connection connection = getConnection()) {
+
+            String sql = "INSERT INTO usuario_tem_trofeus(login, estilo) VALUES (?, ?)";
+            PreparedStatement prepareStatement = connection.prepareStatement(sql);
+            prepareStatement.setString(1, login);
+            prepareStatement.setString(2, estilo);
+            prepareStatement.executeUpdate();
+
+        } catch (SQLException exception) {
+            throw new DAOException("Erro ao adicionar troféu!", exception);
+        }
+    }
+
+    @Override
+    public boolean temTrofeu(String login, String estilo) throws DAOException {
+        try (Connection connection = getConnection()) {
+
+            String sql = "SELECT COUNT(*) FROM usuario_tem_trofeus WHERE login = ? AND estilo = ?";
+            PreparedStatement prepareStatement = connection.prepareStatement(sql);
+            prepareStatement.setString(1, login);
+            prepareStatement.setString(2, estilo);
+            ResultSet resultSet = prepareStatement.executeQuery();
+            if (resultSet.next()) return resultSet.getInt(1) > 0;
+
+        } catch (SQLException exception) {
+            throw new DAOException("Erro ao verificar se usuário tem troféu!", exception);
+        }
+
+        return false;
+    }
+
+    @Override
+    public void removerTrofeu(String login, String estilo) throws DAOException {
+        try (Connection connection = getConnection()) {
+
+            String sql = "DELETE FROM usuario_tem_trofeus WHERE login = ? AND estilo = ?";
+            PreparedStatement prepareStatement = connection.prepareStatement(sql);
+            prepareStatement.setString(1, login);
+            prepareStatement.setString(2, estilo);
+            prepareStatement.executeUpdate();
+
+        } catch (SQLException exception) {
+            throw new DAOException("Erro ao remover troféu!", exception);
+        }
+    }
+
     private Usuario criar(ResultSet resultSet) throws SQLException {
         return new Usuario(resultSet.getString("login"), resultSet.getString("email"),
                 resultSet.getString("nome"), resultSet.getString("senha"),

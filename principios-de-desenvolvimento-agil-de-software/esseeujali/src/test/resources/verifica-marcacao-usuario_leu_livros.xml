@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
     <usuario_leu_livros login="jesus" id_livro="1"/>
-    <usuario_leu_livros login="jose" id_livro="3"/>
-    <usuario_leu_livros login="jose" id_livro="4"/>
+    <usuario_leu_livros login="jose" id_livro="6"/>
+    <usuario_leu_livros login="jose" id_livro="7"/>
+    <usuario_leu_livros login="jose" id_livro="8"/>
+    <usuario_leu_livros login="jose" id_livro="9"/>
+    <usuario_leu_livros login="jose" id_livro="10"/>
     <usuario_leu_livros login="maria" id_livro="1"/>
     <usuario_leu_livros login="maria" id_livro="2"/>
 </dataset>

@@ -17,12 +17,12 @@ public class UsuarioDAOTest extends AbstractTest {
 
     @Before
     public void setUp() throws Exception {
-        super.setUp("/usuario.xml", "/livro.xml", "/usuario_leu_livros.xml");
+        super.setUp("/usuario.xml", "/livro.xml", "/usuario_leu_livros.xml", "/usuario_tem_trofeus.xml");
     }
 
     @After
     public void tearDown() throws Exception {
-        super.tearDown("/usuario.xml", "/livro.xml", "/usuario_leu_livros.xml");
+        super.tearDown("/usuario.xml", "/livro.xml", "/usuario_leu_livros.xml", "/usuario_tem_trofeus.xml");
     }
 
     @Test
@@ -47,5 +47,18 @@ public class UsuarioDAOTest extends AbstractTest {
         assertNotNull(ranking);
         assertTrue(ranking.size() <= 10);
         assertEquals("jose", ranking.get(0).getLogin());
+    }
+
+    @Test
+    public void deveContarLivrosLidoDeUmEstilo() throws DAOException {
+        int quantidade = dao.contarLivrosLidoDeUmEstilo("jose", "Religião");
+
+        assertEquals(5, quantidade);
+    }
+
+    @Test
+    public void deveVerificarSeUsuarioTemTrofeu() throws DAOException {
+        assertFalse(dao.temTrofeu("maria", "Tecnologia"));
+        assertTrue(dao.temTrofeu("jose", "Religião"));
     }
 }

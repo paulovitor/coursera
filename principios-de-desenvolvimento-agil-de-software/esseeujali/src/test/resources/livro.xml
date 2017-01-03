@@ -2,6 +2,12 @@
 <dataset>
 	<livro id="1" titulo="Design Patterns com Java - Projeto orientado a objetos guiado por padrões" autor="Eduardo Guerra" estilo="Tecnologia" paginas="334"/>
 	<livro id="2" titulo="Test-Driven Development - Teste e Design no Mundo Real" autor="Mauricio Aniche" estilo="Tecnologia" paginas="194"/>
-	<livro id="3" titulo="Como Se Dar Bem com Quem Você Quer Bem" autor="Márcio Mendes" estilo="Religião" paginas="312"/>
-	<livro id="4" titulo="Novena de Natal 2016" autor="Canção Nova" estilo="Religião" paginas="48"/>
+	<livro id="3" titulo="Aplicações web real-time com Node.js" autor="Caio Ribeiro Pereira" estilo="Tecnologia" paginas="161"/>
+	<livro id="4" titulo="Controlando versões com Git e GitHub" autor="Alexandre Aquiles, Rodrigo Ferreira" estilo="Tecnologia" paginas="204"/>
+	<livro id="5" titulo="DevOps na prática - entrega de software confiável e automatizada" autor="Danilo Sato" estilo="Tecnologia" paginas="248"/>
+	<livro id="6" titulo="Como Se Dar Bem com Quem Você Quer Bem" autor="Márcio Mendes" estilo="Religião" paginas="312"/>
+	<livro id="7" titulo="Novena de Natal 2016" autor="Canção Nova" estilo="Religião" paginas="48"/>
+	<livro id="8" titulo="Preparai o caminho do Senhor" autor="Monsenhor Jonas Abib" estilo="Religião" paginas="144"/>
+	<livro id="9" titulo="O Nome de Deus é Misericórdia" autor="Papa Francisco" estilo="Religião" paginas="142"/>
+	<livro id="10" titulo="Cura dos Traumas da Morte" autor="Padre Leo" estilo="Religião" paginas="136"/>
 </dataset>

@@ -13,12 +13,12 @@ public class GamificacaoTest extends AbstractTest {
 
     @Before
     public void setUp() throws Exception {
-        super.setUp("/usuario.xml", "/livro.xml", "/usuario_leu_livros.xml");
+        super.setUp("/usuario.xml", "/livro.xml", "/usuario_leu_livros.xml", "/usuario_tem_trofeus.xml");
     }
 
     @After
     public void tearDown() throws Exception {
-        super.tearDown("/usuario.xml", "/livro.xml", "/usuario_leu_livros.xml");
+        super.tearDown("/usuario.xml", "/livro.xml", "/usuario_leu_livros.xml", "/usuario_tem_trofeus.xml");
     }
 
     @Test
@@ -37,5 +37,23 @@ public class GamificacaoTest extends AbstractTest {
 
         assertTable("/verifica-desmarcacao-usuario_leu_livros.xml", "usuario_leu_livros");
         assertTable("/verifica-desmarcacao-usuario.xml", "usuario");
+    }
+
+    @Test
+    public void deveGanharTrofeuPorLerLivrosDoMesmoEstilo() throws Exception {
+        Gamificacao.get().marcarLivroComoLidoPorUsuario(livroDAO.recuperar(2), "maria");
+        Gamificacao.get().marcarLivroComoLidoPorUsuario(livroDAO.recuperar(3), "maria");
+        Gamificacao.get().marcarLivroComoLidoPorUsuario(livroDAO.recuperar(4), "maria");
+        Gamificacao.get().marcarLivroComoLidoPorUsuario(livroDAO.recuperar(5), "maria");
+
+        assertTable("/verifica-marcacao-usuario_tem_trofeus.xml", "usuario_tem_trofeus");
+    }
+
+    @Test
+    public void devePerderTrofeuPorLerLivrosDoMesmoEstilo() throws Exception {
+        Livro livro = livroDAO.recuperar(10);
+        Gamificacao.get().desmarcarLivroComoLidoPorUsuario(livro, "jose");
+
+        assertTable("/verifica-desmarcacao-usuario_tem_trofeus.xml", "usuario_tem_trofeus");
     }
 }

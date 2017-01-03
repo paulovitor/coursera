@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-	<usuario login="jesus" email="jesus@coursera.org" nome="Jesus" senha="jesus" pontos="3"/>
-	<usuario login="maria" email="maria@coursera.org" nome="Maria" senha="maria" pontos="3"/>
-	<usuario login="jose" email="jose@coursera.org" nome="José" senha="jose" pontos="4"/>
+	<usuario login="jesus" email="jesus@coursera.org" nome="Jesus" senha="jesus" pontos="4"/>
+	<usuario login="maria" email="maria@coursera.org" nome="Maria" senha="maria" pontos="4"/>
+	<usuario login="jose" email="jose@coursera.org" nome="José" senha="jose" pontos="11"/>
 </dataset>
