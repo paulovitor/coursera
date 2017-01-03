@@ -24,7 +24,7 @@ public class UsuarioDAOImpl extends AbstractDAO implements UsuarioDAO {
             if (resultSet.next()) return criar(resultSet);
 
         } catch (SQLException exception) {
-            throw new DAOException("Erro ao recuperar usuário!", exception);
+            throw new DAOException("Erro ao recuperar usuário por login e senha!", exception);
         }
 
         return null;
@@ -192,6 +192,44 @@ public class UsuarioDAOImpl extends AbstractDAO implements UsuarioDAO {
         } catch (SQLException exception) {
             throw new DAOException("Erro ao remover troféu!", exception);
         }
+    }
+
+    @Override
+    public Usuario recuperar(String login) throws DAOException {
+        try (Connection connection = getConnection()) {
+
+            String sql = "SELECT * FROM usuario WHERE login = ?";
+            PreparedStatement prepareStatement = connection.prepareStatement(sql);
+            prepareStatement.setString(1, login);
+            ResultSet resultSet = prepareStatement.executeQuery();
+            if (resultSet.next()) return criar(resultSet);
+
+        } catch (SQLException exception) {
+            throw new DAOException("Erro ao recuperar usuário por login!", exception);
+        }
+
+        return null;
+    }
+
+    @Override
+    public List<String> recuperarTrofeus(String login) throws DAOException {
+        List<String> trofeus = new ArrayList<>();
+
+        try (Connection connection = getConnection()) {
+
+            String sql = "SELECT * FROM usuario_tem_trofeus WHERE login = ?";
+            PreparedStatement prepareStatement = connection.prepareStatement(sql);
+            prepareStatement.setString(1, login);
+            ResultSet resultSet = prepareStatement.executeQuery();
+            while (resultSet.next()) {
+                trofeus.add(resultSet.getString("estilo"));
+            }
+
+        } catch (SQLException exception) {
+            throw new DAOException("Erro ao recuperar troféus!", exception);
+        }
+
+        return trofeus;
     }
 
     private Usuario criar(ResultSet resultSet) throws SQLException {

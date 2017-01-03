@@ -3,9 +3,14 @@ package com.paulovitor.domain;
 import com.paulovitor.AbstractTest;
 import com.paulovitor.dao.LivroDAO;
 import com.paulovitor.dao.LivroDAOImpl;
+import com.paulovitor.exception.DAOException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 public class GamificacaoTest extends AbstractTest {
 
@@ -55,5 +60,18 @@ public class GamificacaoTest extends AbstractTest {
         Gamificacao.get().desmarcarLivroComoLidoPorUsuario(livro, "jose");
 
         assertTable("/verifica-desmarcacao-usuario_tem_trofeus.xml", "usuario_tem_trofeus");
+    }
+
+    @Test
+    public void deveRecuperarPerfil() throws DAOException {
+        String login = "jose";
+
+        Usuario usuario = Gamificacao.get().recuperarPerfil(login);
+
+        assertNotNull(usuario);
+        assertEquals(login, usuario.getLogin());
+        assertNotNull(usuario.getTrofeus());
+        assertTrue(usuario.getTrofeus().size() == 1);
+        assertEquals("Religião", usuario.getTrofeus().get(0));
     }
 }

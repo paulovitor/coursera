@@ -28,6 +28,7 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="livro?acao=lista">Livros</a></li>
 				<li><a href="usuario?acao=ranking">Ranking</a></li>
+				<li><a href="usuario?acao=perfil">Perfil</a></li>
 				<li><a href="logoff">Logoff</a></li>
 			</ul>
 		</div>

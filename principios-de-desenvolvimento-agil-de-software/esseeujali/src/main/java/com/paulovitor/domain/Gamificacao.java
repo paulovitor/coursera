@@ -47,4 +47,11 @@ public class Gamificacao {
     public List<Usuario> ranking() throws DAOException {
         return usuarioDAO.ranking();
     }
+
+    public Usuario recuperarPerfil(String login) throws DAOException {
+        Usuario usuario = usuarioDAO.recuperar(login);
+        List<String> trofeus = usuarioDAO.recuperarTrofeus(login);
+        usuario.setTrofeus(trofeus);
+        return usuario;
+    }
 }

@@ -28,4 +28,8 @@ public interface UsuarioDAO {
     boolean temTrofeu(String login, String estilo) throws DAOException;
 
     void removerTrofeu(String login, String estilo) throws DAOException;
+
+    Usuario recuperar(String login) throws DAOException;
+
+    List<String> recuperarTrofeus(String login) throws DAOException;
 }

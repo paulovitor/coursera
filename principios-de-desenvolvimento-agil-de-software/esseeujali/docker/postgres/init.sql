@@ -30,9 +30,15 @@ CREATE TABLE livro
 );
 
 INSERT INTO livro (titulo, autor, estilo, paginas) VALUES ('Design Patterns com Java - Projeto orientado a objetos guiado por padrões', 'Eduardo Guerra', 'Tecnologia', 334);
-INSERT INTO livro (titulo, autor, estilo, paginas) VALUES ('Test-Driven Development - Teste e Design no Mundo Real', 'Mauricio Aniche', 'Tecnologia', 194);
+INSERT INTO livro (titulo, autor, estilo, paginas) VALUES ('Test-Driven Development - Teste e Design no Mundo Real', 'Caio Ribeiro Pereira', 'Tecnologia', 194);
+INSERT INTO livro (titulo, autor, estilo, paginas) VALUES ('Aplicações web real-time com Node.js', 'Mauricio Aniche', 'Tecnologia', 161);
+INSERT INTO livro (titulo, autor, estilo, paginas) VALUES ('Controlando versões com Git e GitHub', 'Alexandre Aquiles, Rodrigo Ferreira', 'Tecnologia', 204);
+INSERT INTO livro (titulo, autor, estilo, paginas) VALUES ('DevOps na prática - entrega de software confiável e automatizada', 'Danilo Sato', 'Tecnologia', 248);
 INSERT INTO livro (titulo, autor, estilo, paginas) VALUES ('Como Se Dar Bem com Quem Você Quer Bem', 'Márcio Mendes', 'Religião', 312);
 INSERT INTO livro (titulo, autor, estilo, paginas) VALUES ('Novena de Natal 2016', 'Canção Nova', 'Religião', 48);
+INSERT INTO livro (titulo, autor, estilo, paginas) VALUES ('Preparai o caminho do Senhor', 'Monsenhor Jonas Abib', 'Religião', 144);
+INSERT INTO livro (titulo, autor, estilo, paginas) VALUES ('O Nome de Deus é Misericórdia', 'Papa Francisco', 'Religião', 142);
+INSERT INTO livro (titulo, autor, estilo, paginas) VALUES ('Cura dos Traumas da Morte', 'Padre Leo', 'Religião', 136);
 
 CREATE TABLE usuario_leu_livros
 (

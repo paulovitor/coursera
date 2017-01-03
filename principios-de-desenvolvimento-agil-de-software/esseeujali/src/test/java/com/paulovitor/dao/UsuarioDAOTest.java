@@ -26,7 +26,7 @@ public class UsuarioDAOTest extends AbstractTest {
     }
 
     @Test
-    public void deveRecuperarUsuarioPorLogin() throws DAOException {
+    public void deveRecuperarUsuarioPorLoginESenha() throws DAOException {
         String login = "maria";
 
         Usuario usuario = dao.recuperar(login, "maria");
