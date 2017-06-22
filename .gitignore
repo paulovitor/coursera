@@ -10,7 +10,7 @@ target/
 
 # Intellij #
 .idea/
-**.iml
+*.iml
 
 # Jrebel #
 rebel.xml
