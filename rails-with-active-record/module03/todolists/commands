@@ -1,0 +1,9 @@
+rails generate scaffold TodoItem due_date:date title description:text completed:boolean
+
+rake db:migrate
+
+rake db:seed RAILS_ENV=test
+
+rails db -e test
+
+rake routes
