@@ -1,1 +1,7 @@
-rails g migration add_has_secure_password_to_user has_secure_password
+docker build -t demo .
+
+docker run -it -v .:/app -p 3000:3000 demo bash
+
+rake db:migrate RAILS_ENV=development
+
+rails g controller sessions new create destroy -q
