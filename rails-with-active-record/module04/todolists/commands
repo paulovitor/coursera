@@ -1,0 +1,1 @@
+rails g migration add_has_secure_password_to_user has_secure_password
