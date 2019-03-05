@@ -1,12 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>br.com.paulo</groupId>
-    <artifactId>strategy-estacionamento</artifactId>
+    <groupId>com</groupId>
+    <artifactId>desconto-sem-desconto</artifactId>
     <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>strategy-estacionamento</name>
-    <description>mvn archetype:generate -DgroupId=br.com.paulovitor -DartifactId=strategy-estacionamento -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false</description>
+    <name>desconto-sem-desconto</name>
+    <description>mvn archetype:generate -DgroupId=br.com.paulovitor -DartifactId=desconto-sem-desconto
+        -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+    </description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
