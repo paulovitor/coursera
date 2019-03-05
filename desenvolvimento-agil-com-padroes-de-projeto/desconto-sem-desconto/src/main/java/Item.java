@@ -2,7 +2,7 @@ public class Item {
 
     private final String nome;
     private final double valor;
-    private Desconto desconto;
+    private Desconto desconto = new SemDesconto();
 
     public Item(String nome, double valor, Desconto desconto) {
         this.nome = nome;
@@ -17,17 +17,10 @@ public class Item {
 
     @Override
     public String toString() {
-        if (desconto != null) {
-            return nome + " R$" + desconto.darDesconto(valor);
-        }
-        return nome + " R$" + valor;
+        return nome + " R$" + desconto.darDesconto(valor);
     }
 
     public double precoQuantidade(int qtd) {
-        if (desconto != null) {
-            return desconto.darDesconto(valor) * qtd;
-        } else {
-            return valor * qtd;
-        }
+        return desconto.darDesconto(valor) * qtd;
     }
 }
