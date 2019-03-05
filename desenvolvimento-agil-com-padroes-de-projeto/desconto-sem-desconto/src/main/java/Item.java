@@ -18,9 +18,9 @@ public class Item {
     @Override
     public String toString() {
         if (desconto != null) {
-            return nome + "R$" + desconto.darDesconto(valor);
+            return nome + " R$" + desconto.darDesconto(valor);
         }
-        return nome + "R$" + valor;
+        return nome + " R$" + valor;
     }
 
     public double precoQuantidade(int qtd) {
