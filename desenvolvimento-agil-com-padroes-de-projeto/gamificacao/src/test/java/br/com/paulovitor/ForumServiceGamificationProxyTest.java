@@ -21,8 +21,8 @@ public class ForumServiceGamificationProxyTest {
     @Before
     public void setUp() {
         AchievementStorage memoryAchievementStorage = new MemoryAchievementStorage();
-        memoryAchievementStorage.addObserver(new CreationAchievementObserver());
-        memoryAchievementStorage.addObserver(new ParticipationAchievementObserver());
+        memoryAchievementStorage.addObserver(new CreationAchievementObserver(memoryAchievementStorage));
+        memoryAchievementStorage.addObserver(new ParticipationAchievementObserver(memoryAchievementStorage));
 
         AchievementStorageFactory.setAchievementStorage(memoryAchievementStorage);
         achievementStorage = AchievementStorageFactory.getAchievementStorage();
