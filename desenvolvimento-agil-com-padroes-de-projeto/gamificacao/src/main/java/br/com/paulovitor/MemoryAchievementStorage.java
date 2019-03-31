@@ -30,13 +30,10 @@ public class MemoryAchievementStorage implements AchievementStorage {
 
     @Override
     public Achievement getAchievement(String user, String achievementName) {
-        if (achievements.containsKey(user)) {
-            return achievements.get(user).stream()
-                    .filter(achievement -> achievement.getName().equals(achievementName))
-                    .findFirst()
-                    .orElse(null);
-        }
-        return null;
+        return achievements.get(user).stream()
+                .filter(achievement -> achievement.getName().equals(achievementName))
+                .findFirst()
+                .orElse(null);
     }
 
     @Override

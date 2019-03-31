@@ -2,11 +2,11 @@ package br.com.paulovitor;
 
 import static br.com.paulovitor.Badge.BadgeType.PART_OF_THE_COMMUNITY;
 
-public class ParticipationAchievementObserver implements AchievementObserver {
+public class ParticipationPointsObserver implements AchievementObserver {
 
     private AchievementStorage achievementStorage;
 
-    public ParticipationAchievementObserver(AchievementStorage achievementStorage) {
+    public ParticipationPointsObserver(AchievementStorage achievementStorage) {
         this.achievementStorage = achievementStorage;
     }
 

@@ -2,11 +2,11 @@ package br.com.paulovitor;
 
 import static br.com.paulovitor.Badge.BadgeType.INVENTOR;
 
-public class CreationAchievementObserver implements AchievementObserver {
+public class CreationPointsObserver implements AchievementObserver {
 
     private AchievementStorage achievementStorage;
 
-    public CreationAchievementObserver(AchievementStorage achievementStorage) {
+    public CreationPointsObserver(AchievementStorage achievementStorage) {
         this.achievementStorage = achievementStorage;
     }
 

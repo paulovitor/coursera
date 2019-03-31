@@ -1,7 +1,6 @@
 package br.com.paulovitor;
 
 import java.util.List;
-import java.util.Optional;
 
 import static br.com.paulovitor.Points.PointsType.CREATION;
 import static br.com.paulovitor.Points.PointsType.PARTICIPATION;
@@ -37,15 +36,14 @@ public class Points extends Achievement {
 
     @Override
     public void update(List<Achievement> achievements) {
-        Optional<Achievement> optional = achievements.stream()
+        achievements.stream()
                 .filter(achievement -> achievement instanceof Points && achievement.getName().equals(name))
-                .findFirst();
-
-        if (optional.isPresent()) {
-            Points points = (Points) optional.get();
-            plusValue(points.getValue());
-            achievements.remove(points);
-        }
+                .findFirst()
+                .ifPresent(achievement -> {
+                    Points points = (Points) achievement;
+                    plusValue(points.getValue());
+                    achievements.remove(points);
+                });
         achievements.add(this);
     }
 
